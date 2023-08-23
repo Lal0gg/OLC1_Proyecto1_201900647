@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -18,6 +20,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
 
 /**
  *
@@ -26,6 +31,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class GUI extends javax.swing.JFrame {
 
     File archivoactual = null;
+    RSyntaxTextArea textAreaGG = new RSyntaxTextArea();
+    RSyntaxTextArea textAreaGG2 = new RSyntaxTextArea();
 
     /**
      * Creates new form GUI
@@ -33,6 +40,8 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         setIconImage(getIconImage());
+        RSyntax();
+        RSyntaxx2();
     }
 
     /**
@@ -46,18 +55,45 @@ public class GUI extends javax.swing.JFrame {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/icon3.png"));
         return retValue;
     }
+
+    public void RSyntax() {
+        textAreaGG.setFont(new Font("Roboto Mono", Font.PLAIN, 15));
+        textAreaGG.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
+        textAreaGG.setAntiAliasingEnabled(true);
+        //textArea.setBackground(Color.BLACK);
+        RTextScrollPane sp = new RTextScrollPane(textAreaGG);
+        sp.getGutter().setLineNumberColor(Color.decode("#4EDEB6"));
+        sp.getGutter().setLineNumberFont(new Font("Roboto Mono", Font.BOLD, 16));
+        sp.getGutter().setBorderColor(Color.decode("#38F8C4"));
+        jPanel2.add(sp);
+
+    }
+
+    public void RSyntaxx2() {
+        textAreaGG2.setFont(new Font("Roboto Mono", Font.PLAIN, 15));
+        textAreaGG2.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
+        textAreaGG2.setAntiAliasingEnabled(true);
+        textAreaGG2.setEditable(false);
+        //textArea.setBackground(Color.BLACK);
+        RTextScrollPane spp = new RTextScrollPane(textAreaGG2);
+        spp.getGutter().setLineNumberColor(Color.decode("#4EDEB6"));
+        spp.getGutter().setLineNumberFont(new Font("Roboto Mono", Font.BOLD, 16));
+        spp.getGutter().setBorderColor(Color.decode("#38F8C4"));
+        jPanel4.add(spp);
+
+    }
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -77,24 +113,6 @@ public class GUI extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-
-        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Roboto Mono", 0, 18)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 255, 255));
-        jTextArea1.setRows(5);
-        jTextArea1.setCaretColor(new java.awt.Color(0, 204, 204));
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Roboto Mono", 0, 18)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(0, 255, 255));
-        jTextArea2.setRows(5);
-        jTextArea2.setCaretColor(new java.awt.Color(0, 204, 204));
-        jScrollPane2.setViewportView(jTextArea2);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Roboto Mono", 1, 18)); // NOI18N
@@ -116,31 +134,36 @@ public class GUI extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 0, 255));
         jLabel4.setText("null");
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setForeground(new java.awt.Color(0, 255, 255));
+        jPanel2.setLayout(new java.awt.CardLayout());
+
+        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel4.setLayout(new java.awt.CardLayout());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(463, 463, 463)))
-                        .addContainerGap())
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 566, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(469, 469, 469))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(491, 491, 491))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,8 +178,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -281,23 +304,20 @@ public class GUI extends javax.swing.JFrame {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
-            jTextArea1.setText(content.toString());
+            textAreaGG.setText(content.toString());
+            //jTextArea1.setText(content.toString());
             archivoactual = selectedFile; // Guardar el archivo seleccionado en la variable global
         }
 
     }
-    
-    private void openAndDisplayFileContentt(){
-            // TODO add your handling code here:
+
+    private void openAndDisplayFileContentt() {
+        // TODO add your handling code here:
         JFileChooser NewChooser = new JFileChooser();
-        FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Files SP", "sp");
-        FileNameExtensionFilter filtro2 = new FileNameExtensionFilter("Files JSON", "json");
+        FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Archivos SP y JSON (*.sp, *.json)", "sp", "json");
         NewChooser.setFileFilter(filtro1);
-        NewChooser.setFileFilter(filtro2);
 
-
-        int selex = NewChooser.showSaveDialog(jTextArea1);
+        int selex = NewChooser.showSaveDialog(textAreaGG);
 
         if (selex == JFileChooser.APPROVE_OPTION) {
             String content = "";
@@ -312,16 +332,15 @@ public class GUI extends javax.swing.JFrame {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            jTextArea1.setText(content);
+            textAreaGG.setText(content.toString());
         }
     }
-    
 
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         File file = archivoactual;
-        String text = jTextArea1.getText();
+        String text = textAreaGG.getText();
 
         try ( PrintWriter out = new PrintWriter(file, StandardCharsets.UTF_8)) {
             out.print(text);
@@ -335,10 +354,10 @@ public class GUI extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        String text = jTextArea1.getText();
+        String text = textAreaGG.getText();
         JFileChooser fc = new JFileChooser();
 
-        int selx = fc.showSaveDialog(jTextArea1);
+        int selx = fc.showSaveDialog(textAreaGG);
 
         if (selx == JFileChooser.APPROVE_OPTION) {
             File fichero = fc.getSelectedFile();
@@ -410,9 +429,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }
