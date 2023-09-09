@@ -1,1 +1,97 @@
+// ------------  Paquete e importaciones ------------
+package statpy;
 
+import java_cup.runtime.*;
+
+
+//------> Codigo para el parser
+//------> Declaracion de variables, funciones y funciones de error
+
+parser code 
+{:
+    public static String resultado = ""; 
+
+    public void syntax_error(Symbol s)
+    {
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+    }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+    {
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+    }
+
+:}
+
+
+//------> Codigo para las acciones gramaticales (no tocar)
+action code
+{:  :}
+
+
+//------> Declaración de terminales
+terminal String TkENTERO, TkDECIMAL ,TkCOMENTmULTI, TkCOMENTnORMAL,TkCADENA;
+terminal String R_MOSTRAR;
+terminal String TkSUMA,TkMULTIPLICACION,TkRESTA,TkDIVISION,TkIGUAL;
+terminal String TkPUNTOYCOMA,TkDOSPUNTOS,TkPUNTO,TkCOMA;
+terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra;
+terminal String TkMAYORQUE, TkMENORQUE, TkMAYORIGUAL, TkMENORIGUAL,TkIGUALIGUAL;
+terminal String TkAND,TkOR, TkNOT;
+terminal String TkINT_R,TkDOUBLE_R,TkCHAR_R,TkBOOL_R,TkSTRING_R;
+terminal String TkVOID_R,TkMAIN_R;
+terminal String TkIF_R, TkELSE_R, TkCASE_R,TkBRAKE_R,TkDEFAULT_R;
+terminal String TkCONSOLE_R,TkWRITE_R;
+terminal String TkFOR_R, TkDO_R,TkWHILE_R;
+terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R;
+
+
+//------> Declaración de no terminales
+non terminal inicio;
+non terminal instruccion, mostrar;
+non terminal lista_instr;
+non terminal expresion;
+non terminal comentario_linea;
+non terminal comentario_multilinea;
+non terminal consolewrite;
+
+//------> PRECEDENCIA
+precedence left TkSUMA, TkRESTA;
+precedence left TkMULTIPLICACION, TkDIVISION;
+
+
+//------> Definir Simbolo Inicial
+start with inicio; 
+
+
+// ------------>  Producciones  <------------
+
+inicio ::= lista_instr
+;
+
+lista_instr ::= lista_instr instruccion
+    | instruccion
+;
+
+instruccion ::= comentario_linea
+            | comentario_multilinea
+            | consolewrite
+;
+
+comentario_linea ::= TkCOMENTnORMAL   {: /* No haces nada con los comentarios de una línea en la acción, simplemente los ignoras. */ :}
+;
+
+comentario_multilinea ::= TkCOMENTmULTI {: /* Haz algo con el comentario multilinea, como almacenarlo o imprimirlo */ :}
+;
+
+consolewrite ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresion:val TkPARENTESISCierra TkPUNTOYCOMA
+                {: statpy.Parser.resultado = statpy.Parser.resultado + func.Funcion.ConsoleWrite(val.toString()); :}
+;
+
+
+
+expresion ::= TkENTERO:val    {: RESULT = Integer.parseInt(val); :}
+           | TkDECIMAL:val     {: RESULT = Double.parseDouble(val); :}
+           | TkCADENA:val      {: RESULT = val; :}
+
+
+;
