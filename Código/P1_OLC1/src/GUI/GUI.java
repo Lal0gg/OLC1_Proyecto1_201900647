@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import p1_olc1.P1_OLC1;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -23,17 +24,25 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
+import static p1_olc1.P1_OLC1.analizarJson;
+import clases.Erroor;
+import clases.Token;
+import static func.Funcion.ErrorList;
+import static func.Funcion.TokenList;
+import static p1_olc1.P1_OLC1.analizarStatpy;
+import Reportes.ReporteTokens;
 
 /**
  *
  * @author edujr
  */
 public class GUI extends javax.swing.JFrame {
-
+    
+    
     File archivoactual = null;
     RSyntaxTextArea textAreaGG = new RSyntaxTextArea();
     RSyntaxTextArea textAreaGG2 = new RSyntaxTextArea();
-
+    
     /**
      * Creates new form GUI
      */
@@ -42,6 +51,8 @@ public class GUI extends javax.swing.JFrame {
         setIconImage(getIconImage());
         RSyntax();
         RSyntaxx2();
+
+        
     }
 
     /**
@@ -227,10 +238,20 @@ public class GUI extends javax.swing.JFrame {
 
         jMenuItem5.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jMenuItem5.setText("StatPy");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jMenuItem6.setText("JSON");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -241,6 +262,11 @@ public class GUI extends javax.swing.JFrame {
 
         jMenuItem4.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jMenuItem4.setText("Ejecutaar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
@@ -251,10 +277,20 @@ public class GUI extends javax.swing.JFrame {
 
         jMenuItem7.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jMenuItem7.setText("Tokens");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
 
         jMenuItem8.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jMenuItem8.setText("Errores Léxicos");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem8);
 
         jMenuBar1.add(jMenu4);
@@ -310,6 +346,7 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
+    
 
     private void openAndDisplayFileContentt() {
         // TODO add your handling code here:
@@ -373,7 +410,62 @@ public class GUI extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
+    //Boton seleccionar Analizador "statpy"
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        jLabel4.setText("Statpy");
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    //Boton seleccionar Analizador "json"
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        jLabel4.setText("Json");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    //boton para ejecutar analizador
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        VerificarAnalizador();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+   //boton reporte Tokens
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        ReporteTokens ReporteT1 = new ReporteTokens();
+        ReporteT1.GenerandoReporteTokens();
+        
+        for (Token token: TokenList){
+            System.out.println("---------------------------");
+            System.out.print("Token: " + token.getToken());
+            System.out.print("Lexema: " + token.getLexema());
+            System.out.print("Línea: " + token.getLinea());
+            System.out.println("Columna: " + token.getColumna());  
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    //boton para errores
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        for (Erroor error : ErrorList) {
+            System.out.println("Tipo de Error: " + error.getType());
+            System.out.println("Descripción: " + error.getDescription());
+            System.out.println("Carácter: " + error.getCharacter());
+            System.out.println("Línea: " + error.getLine());
+            System.out.println("Columna: " + error.getColumn());
+            System.out.println("---------------------------");
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    
+    
+    
+    private void VerificarAnalizador(){
+        if(jLabel4.getText()=="Statpy"){
+            String textt = textAreaGG.getText();
+            analizarStatpy(textt);        
+        }else if(jLabel4.getText()=="Json"){
+    }
+    }
     /**
      * @param args the command line arguments
      */

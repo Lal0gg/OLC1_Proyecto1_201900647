@@ -34,8 +34,8 @@ public class sym {
   public static final int TkOR = 27;
   public static final int TkMAYORIGUAL = 23;
   public static final int EOF = 0;
-  public static final int TkSUMA = 8;
-  public static final int R_MOSTRAR = 7;
+  public static final int TkSUMA = 7;
+  public static final int R_MOSTRAR = 8;
   public static final int error = 1;
   public static final int TkCOMA = 16;
   public static final int TkRESTA = 10;
@@ -65,8 +65,8 @@ public class sym {
   "TkCOMENTmULTI",
   "TkCOMENTnORMAL",
   "TkCADENA",
-  "R_MOSTRAR",
   "TkSUMA",
+  "R_MOSTRAR",
   "TkMULTIPLICACION",
   "TkRESTA",
   "TkDIVISION",
