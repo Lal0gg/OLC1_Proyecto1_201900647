@@ -8,9 +8,9 @@ package func;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import java.awt.List;
-import java.util.ArrayList;
 import clases.Token;
 import clases.Erroor;
+import java.util.LinkedList;
 
 
 /**
@@ -20,12 +20,20 @@ import clases.Erroor;
 
 public class Funcion {
     
-    public static ArrayList<Token> TokenList = new ArrayList<>();
+    public static LinkedList<Token> TokenList = new LinkedList<>();
     
  
-    public static ArrayList<Erroor> ErrorList = new ArrayList<>();
+    public static LinkedList<Erroor> ErrorList = new LinkedList<>();
 
+    public static LinkedList<Erroor> TokenListJson = new LinkedList<>();
+    
+    public static LinkedList<Erroor> ErrorListJson = new LinkedList<>();
+    //            nameVariable -- valorvariable
+    public static HashMap<String, String> HashMapFileJson = new HashMap<>();
+    //            nameArchivoJson -- HashmapVariable
+    public static HashMap<String, Integer> HashMapVariablesJson = new HashMap<>();
 
+    
   
    public static String ConsoleWrite(String expresion){
         return "System.out.println("+expresion+");";

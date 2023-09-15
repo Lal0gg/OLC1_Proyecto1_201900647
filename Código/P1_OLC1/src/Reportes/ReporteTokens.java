@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import clases.Token;
 import func.Funcion;
-import java.io.BufferedWriter;
+import static func.Funcion.TokenList;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,13 +22,14 @@ import javax.swing.JOptionPane;
  */
 public class ReporteTokens {
 
-    private LinkedList<Token> tokensitos;
 
     StringBuilder contentHtml = new StringBuilder();
 
     public void ReporteT(LinkedList<Token> tokensitos) {
-        this.tokensitos = tokensitos;
-
+        HeaderHTML();
+        BodyHTML(tokensitos);
+        CrearHTML();
+        AbrirHTML();
     }
 
     public void HeaderHTML() {
@@ -49,7 +51,7 @@ public class ReporteTokens {
                 + "h1 {\n"
                 + "   font-size: 36px; \n"
                 + "   font-family: 'Roboto Mono', monospace; \n"
-                +"}\n"
+                + "}\n"
                 + "p {\n"
                 + "   font-size: 18px; \n"
                 + "   font-family: 'Roboto Mono', monospace;\n"
@@ -93,59 +95,83 @@ public class ReporteTokens {
                 + "<body>\n"
                 + "<header>\n"
                 + "<h1>Reporte Tokens</h1>\n"
-                + "<p>Este es un ejemplo de un header en HTML y CSS con la fuente Roboto mono</p>\n"
+                + "<p>Proyecto 1 de Organizacion de Lenguajes y Compiladores</p>\n"
                 + "</header>\n"
-                + "<main>\n"
-                + "<div>\n"
-                + "<p>Este es un contenedor con un color rosa pastel en la sección de contenido.</p>\n"
-                + "</div>\n"
-                + "</main>\n"
-                + "</body>\n"
-                + "</html>\n"
         );
 
     }
 
-    public void BodyHTML() {
+    public void BodyHTML(LinkedList<Token> tokensitos) {
+        contentHtml.append(
+                "<main>\n"
+                + "<div>\n"
+                + "<p>Tabla de Tokens</p>\n"
+                + "</div>\n"
+                + "<table>\n"
+                + "<thead>\n"
+                + "<tr>\n"
+                + "<th>Lexema</th>\n"
+                + "<th>Token</th>\n"
+                + "<th>Línea</th>\n"
+                + "<th>Columna</th>\n"
+                + "</tr>\n"
+                + "</thead>\n"
+                + "<tbody>\n");
+
+        for (Token token : tokensitos) {
+
+            contentHtml.append(
+                    "<tr>\n"
+                    + "<td>" + token.getLexema() + "</td>\n"
+                    + "<td>" + token.getToken() + "</td>\n"
+                    + "<td>" + token.getLinea() + "</td>\n"
+                    + "<td>" + token.getColumna() + "</td>\n"
+                    + "</tr>\n"
+            );
+
+        }
+
+        contentHtml.append("</tbody>\n" 
+                + "</table>\n"
+                + "</main>\n"
+                + "</body>\n"
+                + "</html>\n"
+        );
+        ;
 
     }
 
     public void CrearHTML() {
         File reporte1 = new File("ReporteTokens.html");
-        try{
+        try {
             FileWriter escribir = new FileWriter(reporte1);
             escribir.write(contentHtml.toString());
             escribir.close();
-            JOptionPane.showMessageDialog(null, "Reporte generado con éxito.");
+            JOptionPane.showMessageDialog(null, "Reporte generado con éxito :D");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void AbrirHTML() {
-        try
-        {
+        try {
             File file = new File("ReporteTokens.html");
-            if(!Desktop.isDesktopSupported())
-            {
+            if (!Desktop.isDesktopSupported()) {
                 System.out.println("not supported");
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
-            if(file.exists())
+            if (file.exists()) {
                 desktop.open(file);
-        }
-        catch(Exception e)
-        {
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void GenerandoReporteTokens() {
-        HeaderHTML();
-        //BodyHTML();
-        CrearHTML();
-        AbrirHTML();
-    }
+   
+ 
+
+  
 
 }

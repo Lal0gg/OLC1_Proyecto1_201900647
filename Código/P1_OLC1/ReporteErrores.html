@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte Errores</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap ">
+<style>
+header {   
+   background-color: #333;
+   color: #fff;
+ padding: 20px; 
+  text-align: center; 
+ border-radius: 10px;
+}
+h1 {
+   font-size: 36px; 
+   font-family: 'Roboto Mono', monospace; 
+}
+p {
+   font-size: 18px; 
+   font-family: 'Roboto Mono', monospace;
+}
+body { 
+   font-family: 'Arial', sans-serif; 
+    background-color: #f0f0f0; 
+    margin: 0; 
+   padding: 0; 
+    display: flex;
+   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+   min-height: 100vh; 
+}
+ main { 
+  background-color: #8debe5; 
+ padding: 20px;
+ border-radius: 10px;
+ margin-top: 20px;
+ }
+table {
+   width: 100%;
+  border-collapse: collapse; 
+ margin-top: 20px;
+}
+ th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+ th {
+   background-color: #ff9e9e; 
+   color: #fff; 
+ }
+ tr:nth-child(even) { 
+   background-color: #f2f2f2; 
+}
+</style> 
+</head> 
+<body>
+<header>
+<h1>Reporte Errores</h1>
+<p>Proyecto 1 de Organizacion de Lenguajes y Compiladores</p>
+</header>
+<main>
+<div>
+<p>Tabla de Errores</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Lexema</th>
+<th>Descripcion</th>
+<th>Linea</th>
+<th>Columna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lexico</td>
+<td>a</td>
+<td>No es válido en este lenguaje</td>
+<td>1</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Sintactico</td>
+<td>)</td>
+<td>No es valido en este lenguaje sintact</td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Sintactico</td>
+<td>;</td>
+<td>No es valido en este lenguaje sintact</td>
+<td>2</td>
+<td>19</td>
+</tr>
+</tbody>
+</table>
+</main>
+</body>
+</html>

@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Reportes.ReporteErrores;
 import p1_olc1.P1_OLC1;
 import java.awt.Color;
 import java.awt.Font;
@@ -37,12 +38,11 @@ import Reportes.ReporteTokens;
  * @author edujr
  */
 public class GUI extends javax.swing.JFrame {
-    
-    
+
     File archivoactual = null;
     RSyntaxTextArea textAreaGG = new RSyntaxTextArea();
     RSyntaxTextArea textAreaGG2 = new RSyntaxTextArea();
-    
+
     /**
      * Creates new form GUI
      */
@@ -52,7 +52,6 @@ public class GUI extends javax.swing.JFrame {
         RSyntax();
         RSyntaxx2();
 
-        
     }
 
     /**
@@ -346,7 +345,6 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-    
 
     private void openAndDisplayFileContentt() {
         // TODO add your handling code here:
@@ -414,7 +412,7 @@ public class GUI extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         jLabel4.setText("Statpy");
-        
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     //Boton seleccionar Analizador "json"
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -426,46 +424,52 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         VerificarAnalizador();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-   //boton reporte Tokens
+    //boton reporte Tokens
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        ReporteTokens ReporteT1 = new ReporteTokens();
-        ReporteT1.GenerandoReporteTokens();
-        
-        for (Token token: TokenList){
-            System.out.println("---------------------------");
-            System.out.print("Token: " + token.getToken());
-            System.out.print("Lexema: " + token.getLexema());
-            System.out.print("Línea: " + token.getLinea());
-            System.out.println("Columna: " + token.getColumna());  
+        if (jLabel4.getText() == "Statpy") {
+            ReporteTokens ReporteT1 = new ReporteTokens();
+            ReporteT1.ReporteT(TokenList);
+
+            for (Token token : TokenList) {
+                System.out.println("---------------------------");
+                System.out.print(" Token: " + token.getToken());
+                System.out.print(" Lexema: " + token.getLexema());
+                System.out.print(" Línea: " + token.getLinea());
+                System.out.println(" Columna: " + token.getColumna());
+            }
+        } else if (jLabel4.getText() == "Json") {
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jMenuItem7ActionPerformed
     //boton para errores
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        for (Erroor error : ErrorList) {
-            System.out.println("Tipo de Error: " + error.getType());
-            System.out.println("Descripción: " + error.getDescription());
-            System.out.println("Carácter: " + error.getCharacter());
-            System.out.println("Línea: " + error.getLine());
-            System.out.println("Columna: " + error.getColumn());
-            System.out.println("---------------------------");
+        if (jLabel4.getText() == "Statpy") {
+            ReporteErrores ReporteE1 = new ReporteErrores();
+            ReporteE1.ReporteErr(ErrorList);
+            for (Erroor error : ErrorList) {
+                System.out.println("Tipo de Error: " + error.getType());
+                System.out.println("Descripción: " + error.getDescription());
+                System.out.println("Carácter: " + error.getCharacter());
+                System.out.println("Línea: " + error.getLine());
+                System.out.println("Columna: " + error.getColumn());
+                System.out.println("---------------------------");
+            }
+
+        } else if (jLabel4.getText() == "Json") {
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-    
-    
-    
-    private void VerificarAnalizador(){
-        if(jLabel4.getText()=="Statpy"){
+
+    private void VerificarAnalizador() {
+        if (jLabel4.getText() == "Statpy") {
             String textt = textAreaGG.getText();
-            analizarStatpy(textt);        
-        }else if(jLabel4.getText()=="Json"){
+            analizarStatpy(textt);
+        } else if (jLabel4.getText() == "Json") {
+        }
     }
-    }
+
     /**
      * @param args the command line arguments
      */

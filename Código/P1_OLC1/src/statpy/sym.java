@@ -8,55 +8,61 @@ package statpy;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
+  public static final int TkSTRING_R = 38;
   public static final int TkENTERO = 2;
-  public static final int TkSTRING_R = 33;
-  public static final int TkPARENTESISAbre = 19;
+  public static final int TkPARENTESISAbre = 20;
   public static final int TkCOMENTmULTI = 4;
-  public static final int TkCHAR_R = 31;
-  public static final int TkGRAFICA_PIE_R = 48;
-  public static final int TkBOOL_R = 32;
-  public static final int TkIF_R = 36;
-  public static final int TkPUNTOYCOMA = 13;
-  public static final int TkMULTIPLICACION = 9;
-  public static final int TkPARENTESISCierra = 20;
-  public static final int TkPUNTO = 15;
-  public static final int TkAND = 26;
-  public static final int TkNOT = 28;
-  public static final int TkDEFINIR_GLOBALES_R = 46;
-  public static final int TkMENORIGUAL = 24;
-  public static final int TkDEFAULT_R = 40;
-  public static final int TkMAYORQUE = 21;
-  public static final int TkFOR_R = 43;
-  public static final int TkWRITE_R = 42;
-  public static final int TkCONSOLE_R = 41;
+  public static final int TkCHAR_R = 36;
+  public static final int TkGRAFICA_PIE_R = 53;
+  public static final int TkBOOL_R = 37;
+  public static final int TkIncremento = 33;
+  public static final int TkIF_R = 41;
+  public static final int TkPUNTOYCOMA = 14;
+  public static final int TkNewValor = 54;
+  public static final int TkMULTIPLICACION = 10;
+  public static final int TkPARENTESISCierra = 21;
+  public static final int TkPUNTO = 16;
+  public static final int TkSignoDolar = 29;
+  public static final int TkAND = 30;
+  public static final int TkNOT = 32;
+  public static final int TkDEFINIR_GLOBALES_R = 51;
+  public static final int TkMENORIGUAL = 27;
+  public static final int TkDEFAULT_R = 45;
+  public static final int TkMAYORQUE = 24;
+  public static final int TkFOR_R = 48;
+  public static final int TkWRITE_R = 47;
+  public static final int TkCONSOLE_R = 46;
   public static final int TkCADENA = 6;
   public static final int TkCOMENTnORMAL = 5;
-  public static final int TkOR = 27;
-  public static final int TkMAYORIGUAL = 23;
+  public static final int TkOR = 31;
+  public static final int TkMAYORIGUAL = 26;
   public static final int EOF = 0;
-  public static final int TkSUMA = 7;
-  public static final int R_MOSTRAR = 8;
+  public static final int TkSUMA = 8;
+  public static final int R_MOSTRAR = 9;
   public static final int error = 1;
-  public static final int TkCOMA = 16;
-  public static final int TkRESTA = 10;
+  public static final int TkCOMA = 17;
+  public static final int TkRESTA = 11;
   public static final int TkDECIMAL = 3;
-  public static final int TkMENORQUE = 22;
-  public static final int TkDOUBLE_R = 30;
-  public static final int TkIGUALIGUAL = 25;
-  public static final int TkIGUAL = 12;
-  public static final int TkLLAVEC = 18;
-  public static final int TkBRAKE_R = 39;
-  public static final int TkLLAVEA = 17;
-  public static final int TkVOID_R = 34;
-  public static final int TkCASE_R = 38;
-  public static final int TkMAIN_R = 35;
-  public static final int TkELSE_R = 37;
-  public static final int TkINT_R = 29;
-  public static final int TkWHILE_R = 45;
-  public static final int TkDOSPUNTOS = 14;
-  public static final int TkDIVISION = 11;
-  public static final int TkGRAFICA_BARRAS_R = 47;
-  public static final int TkDO_R = 44;
+  public static final int TkMENORQUE = 25;
+  public static final int TkDOUBLE_R = 35;
+  public static final int TkIGUALIGUAL = 28;
+  public static final int TkIGUAL = 13;
+  public static final int TkLLAVEC = 19;
+  public static final int TkCORCHETEAbre = 22;
+  public static final int TkBRAKE_R = 44;
+  public static final int TkLLAVEA = 18;
+  public static final int TkCORCHETECierra = 23;
+  public static final int TkVOID_R = 39;
+  public static final int TkCASE_R = 43;
+  public static final int TkMAIN_R = 40;
+  public static final int TkErChar = 7;
+  public static final int TkELSE_R = 42;
+  public static final int TkINT_R = 34;
+  public static final int TkWHILE_R = 50;
+  public static final int TkDOSPUNTOS = 15;
+  public static final int TkDIVISION = 12;
+  public static final int TkGRAFICA_BARRAS_R = 52;
+  public static final int TkDO_R = 49;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -65,6 +71,7 @@ public class sym {
   "TkCOMENTmULTI",
   "TkCOMENTnORMAL",
   "TkCADENA",
+  "TkErChar",
   "TkSUMA",
   "R_MOSTRAR",
   "TkMULTIPLICACION",
@@ -79,14 +86,18 @@ public class sym {
   "TkLLAVEC",
   "TkPARENTESISAbre",
   "TkPARENTESISCierra",
+  "TkCORCHETEAbre",
+  "TkCORCHETECierra",
   "TkMAYORQUE",
   "TkMENORQUE",
   "TkMAYORIGUAL",
   "TkMENORIGUAL",
   "TkIGUALIGUAL",
+  "TkSignoDolar",
   "TkAND",
   "TkOR",
   "TkNOT",
+  "TkIncremento",
   "TkINT_R",
   "TkDOUBLE_R",
   "TkCHAR_R",
@@ -106,7 +117,8 @@ public class sym {
   "TkWHILE_R",
   "TkDEFINIR_GLOBALES_R",
   "TkGRAFICA_BARRAS_R",
-  "TkGRAFICA_PIE_R"
+  "TkGRAFICA_PIE_R",
+  "TkNewValor"
   };
 }
 

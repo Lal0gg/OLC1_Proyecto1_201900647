@@ -9,6 +9,9 @@ import javax.swing.text.html.HTMLEditorKit.Parser;
 import func.*;
 import clases.Erroor;
 import clases.Token;
+import static func.Funcion.TokenList;
+
+import javax.swing.JOptionPane;
 
 
 /**
@@ -28,7 +31,7 @@ public class P1_OLC1 {
         GUI nuevaGUI = new GUI();
         nuevaGUI.setVisible(true);
         
-        //analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
+        analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
         //analizadorJson("src/json/", "Lexer.jflex", "Parser.cup");
         String entrada = """
                          // Hola w 
@@ -38,6 +41,7 @@ public class P1_OLC1 {
                          df
                               */
                          Console.Write("holiwi");
+                         Console.write(85.5);
                          Console.WriTe(5);
                          console.write(6.5);
                          """;
@@ -53,7 +57,9 @@ public class P1_OLC1 {
   
     
     public static void analizadorStatpy(String ruta, String jflexFile, String cupFile){
+        
         try {
+            
             String opcionesJflex[] =  {ruta+jflexFile,"-d",ruta};
             jflex.Main.generate(opcionesJflex);
 
@@ -86,10 +92,13 @@ public class P1_OLC1 {
     
      public static void analizarStatpy (String entrada){
          try {
+             TokenList.clear();
              statpy.Lexer lexer = new statpy.Lexer(new StringReader(entrada)); 
              statpy.Parser parser = new statpy.Parser(lexer);
              parser.parse();
              System.out.println("Se analizó correctamente el archivo SP :D");
+             JOptionPane.showMessageDialog(null, "Analisis Sp generado con éxito :D");
+
          } catch (Exception e) {
              System.out.println("Error fatal en compilación de entrada.");
              System.out.println(e);
@@ -103,6 +112,7 @@ public class P1_OLC1 {
              json.Parser parser = new json.Parser(lexer);
              parser.parse();
              System.out.println("Se analizó correctamente el archivo JSON :D ");
+             JOptionPane.showMessageDialog(null, "Analisis Json generado con éxito :D");
          } catch (Exception e) {
              System.out.println("Error fatal en compilación de entrada.");
              System.out.println(e);

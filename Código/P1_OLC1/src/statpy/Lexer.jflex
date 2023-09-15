@@ -22,27 +22,35 @@ import static func.Funcion.ErrorList;
 
 %{ 
 %} 
-
+ 
 // ------> Expresiones Regulares 
 
 entero =[0-9]+ 
-decimal =-?([0-9]+\.[0-9]+|[0-9]+)
+decimal =([0-9]+\.[0-9]+|[0-9]+)
 cadena = [\"][^\"\n]+[\"]
-comentariomultilinea =\/\*[\s\S]*?\*\/
+comentariomultilinea =[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 comentariolinea =\/\/[^\n]*
+erchar =\'[a-zA-ZñÑ]\'
+
+
+//    [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]     
+//    /\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/
+//    /\\*\\s*([^*]|(\\*+[^*/]))*\\*+\\s*\\*/
+//    \/\*[\s\S]*?\*\/
 
 %%
 // ------------  Reglas Lexicas -------------------
-// --> ER = 5
+// --> ER = 6
 {entero}                {Token NuevoToken = new Token("TkENTERO",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkENTERO> Tk: " + yytext());return new Symbol(sym.TkENTERO, yycolumn, yyline, yytext()); }
-{decimal}               {Token NuevoToken = new Token("TkDECIMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDECIMAL> Tk: " + yytext());return new Symbol(sym.TkDECIMAL, yycolumn, yyline, yytext()); }
+{decimal}               {Token NuevoToken = new Token("TkDECIMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDECIMAL> Tk: " + yytext());return new Symbol(sym.TkDECIMAL, yycolumn, yyline, yytext());}
 {comentariomultilinea}  {Token NuevoToken = new Token("TkCOMENTmULTI",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCOMENTmULTI> Tk: " + yytext());return new Symbol(sym.TkCOMENTmULTI, yycolumn, yyline, yytext()); }
 {comentariolinea}       {Token NuevoToken = new Token("TkCOMENTnORMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCOMENTnORMAL> Tk: " + yytext());return new Symbol(sym.TkCOMENTnORMAL, yycolumn, yyline, yytext());}
-{cadena}                { Token NuevoToken = new Token("TkCADENA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCADENA> Tk: " + yytext());return new Symbol(sym.TkCADENA, yycolumn, yyline, yytext());}
+{cadena}                {Token NuevoToken = new Token("TkCADENA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCADENA> Tk: " + yytext());return new Symbol(sym.TkCADENA, yycolumn, yyline, yytext());}
+{erchar}                {Token NuevoToken = new Token("TkErChar",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkErChar> Tk: " + yytext());return new Symbol(sym.TkErChar, yycolumn, yyline, yytext());}
 
 
 
-// --> Simbolos = 21
+// --> Simbolos = 25
 ";"     {Token NuevoToken = new Token("TkPUNTOYCOMA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPUNTOYCOMA> Tk: " + yytext());return new Symbol(sym.TkPUNTOYCOMA, yycolumn, yyline, yytext());}
 ":"     {Token NuevoToken = new Token("TkDOSPUNTOS",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDOSPUNTOS> Tk: " + yytext());return new Symbol(sym.TkDOSPUNTOS, yycolumn, yyline, yytext());}
 "."     {Token NuevoToken = new Token("TkPUNTO",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPUNTO> Tk: " + yytext());return new Symbol(sym.TkPUNTO, yycolumn, yyline, yytext());}
@@ -56,6 +64,8 @@ comentariolinea =\/\/[^\n]*
 "}"     {Token NuevoToken = new Token("TkLLAVEC",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkLLAVEC> Tk: " + yytext());return new Symbol(sym.TkLLAVEC, yycolumn, yyline, yytext()); }
 "("     {Token NuevoToken = new Token("TkPARENTESISAbre",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPARENTESISAbre> Tk: " + yytext());return new Symbol(sym.TkPARENTESISAbre, yycolumn, yyline, yytext());}
 ")"     {Token NuevoToken = new Token("TkPARENTESISCierra",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPARENTESISCierra> Tk: " + yytext());return new Symbol(sym.TkPARENTESISCierra, yycolumn, yyline, yytext());}
+"["     {Token NuevoToken = new Token("TkCORCHETEAbre",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCORCHETEAbre> Tk: " + yytext());return new Symbol(sym.TkCORCHETEAbre, yycolumn, yyline, yytext());}
+"]"     {Token NuevoToken = new Token("TkCORCHETECierra",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCORCHETECierra> Tk: " + yytext());return new Symbol(sym.TkCORCHETECierra, yycolumn, yyline, yytext());}
 ">"     {Token NuevoToken = new Token("TkMAYORQUE",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);  System.out.println("Se acepto el Token  <TkMAYORQUE> Tk: " + yytext());return new Symbol(sym.TkMAYORQUE, yycolumn, yyline, yytext());}
 "<"     {Token NuevoToken = new Token("TkMENORQUE",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkMENORQUE> Tk: " + yytext());return new Symbol(sym.TkMENORQUE, yycolumn, yyline, yytext()); }
 ">="    {Token NuevoToken = new Token("TkMAYORIGUAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkMAYORIGUAL> Tk: " + yytext());return new Symbol(sym.TkMAYORIGUAL, yycolumn, yyline, yytext());}
@@ -64,10 +74,12 @@ comentariolinea =\/\/[^\n]*
 "&&"    {Token NuevoToken = new Token("TkAND",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkAND> Tk: " + yytext());return new Symbol(sym.TkAND, yycolumn, yyline, yytext());}
 "||"    {Token NuevoToken = new Token("TkOR",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkOR> Tk: " + yytext());return new Symbol(sym.TkOR, yycolumn, yyline, yytext());}
 "!"     {Token NuevoToken = new Token("TkNOT",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkNOT> Tk: " + yytext());return new Symbol(sym.TkNOT, yycolumn, yyline, yytext());}
+"++"    {Token NuevoToken = new Token("TkIncremento",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIncremento> Tk: " + yytext());return new Symbol(sym.TkIncremento, yycolumn, yyline, yytext());}
+"$"     {Token NuevoToken = new Token("TkSignoDolar",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkSignoDolar> Tk: " + yytext());return new Symbol(sym.TkSignoDolar, yycolumn, yyline, yytext());}
 
 
 
-// --> Palabras Reservadas = 20 
+// --> Palabras Reservadas = 21 
 "int"                   {Token NuevoToken = new Token("TkINT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkINT_R> Tk: "  + yytext());return new Symbol(sym.TkINT_R, yycolumn, yyline, yytext()); }
 "double"                {Token NuevoToken = new Token("TkINT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkINT_R> Tk: " + yytext());return new Symbol(sym.TkINT_R, yycolumn, yyline, yytext());}
 "char"                  {Token NuevoToken = new Token("TkCHAR_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCHAR_R> Tk: "  + yytext());return new Symbol(sym.TkCHAR_R, yycolumn, yyline, yytext());}
@@ -88,7 +100,7 @@ comentariolinea =\/\/[^\n]*
 "DefinirGlobales"       {Token NuevoToken = new Token("TkDEFINIR_GLOBALES_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDEFINIR_GLOBALES_R> Tk: " + yytext());return new Symbol(sym.TkDEFINIR_GLOBALES_R, yycolumn, yyline, yytext());}
 "GraficaBarras"         {Token NuevoToken = new Token("TkGRAFICA_BARRAS_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkGRAFICA_BARRAS_R> Tk: "  + yytext());return new Symbol(sym.TkGRAFICA_BARRAS_R, yycolumn, yyline, yytext());}
 "GraficaPie"            {Token NuevoToken = new Token("TkGRAFICA_PIE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkGRAFICA_PIE_R> Tk: "  + yytext());return new Symbol(sym.TkGRAFICA_PIE_R, yycolumn, yyline, yytext());}
-
+"NewValor"              {Token NuevoToken = new Token("TkNewValor",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkNewValor> Tk: "  + yytext());return new Symbol(sym.TkNewValor, yycolumn, yyline, yytext());}
 
 
 

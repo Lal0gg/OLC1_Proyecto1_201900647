@@ -2,7 +2,8 @@
 package statpy;
 
 import java_cup.runtime.*;
-
+import clases.Erroor;
+import func.Funcion;
 
 
 
@@ -15,12 +16,16 @@ parser code
     public static String resultado = ""; 
 
     public void syntax_error(Symbol s)
-    {
-            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+    {       
+            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
+            Funcion.ErrorList.add(errorsito);
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );        
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
-    {
+    {       
+            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
+            Funcion.ErrorList.add(errorsito);
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
     }
 
@@ -33,18 +38,18 @@ action code
 
 
 //------> Declaración de terminales
-terminal String TkENTERO, TkDECIMAL ,TkCOMENTmULTI, TkCOMENTnORMAL,TkCADENA;
+terminal String TkENTERO, TkDECIMAL ,TkCOMENTmULTI, TkCOMENTnORMAL,TkCADENA,TkErChar;
 terminal String TkSUMA,R_MOSTRAR,TkMULTIPLICACION,TkRESTA,TkDIVISION,TkIGUAL;
 terminal String TkPUNTOYCOMA,TkDOSPUNTOS,TkPUNTO,TkCOMA;
-terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra;
-terminal String TkMAYORQUE, TkMENORQUE, TkMAYORIGUAL, TkMENORIGUAL,TkIGUALIGUAL;
-terminal String TkAND,TkOR, TkNOT;
+terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra,TkCORCHETEAbre,TkCORCHETECierra;
+terminal String TkMAYORQUE, TkMENORQUE, TkMAYORIGUAL, TkMENORIGUAL,TkIGUALIGUAL,TkSignoDolar;
+terminal String TkAND,TkOR, TkNOT,TkIncremento;
 terminal String TkINT_R,TkDOUBLE_R,TkCHAR_R,TkBOOL_R,TkSTRING_R;
 terminal String TkVOID_R,TkMAIN_R;
 terminal String TkIF_R, TkELSE_R, TkCASE_R,TkBRAKE_R,TkDEFAULT_R;
 terminal String TkCONSOLE_R,TkWRITE_R;
 terminal String TkFOR_R, TkDO_R,TkWHILE_R;
-terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R;
+terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewValor;
 
 
 //------> Declaración de no terminales
@@ -67,16 +72,40 @@ start with inicio;
 
 // ------------>  Producciones  <------------
 
+
+/*
+inici = lista_instruc
+
+lista_instruc = lista_instruc instruccion
+                | instruccion
+
+instruccion = print;
+
+
+print = "Console" "." "write" ( expresion)
+
+expresion = entero
+        | double
+        | char
+        | true
+        | false
+
+
+
+
+*/
+
 inicio ::= lista_instr
 ;
 
 lista_instr ::= lista_instr instruccion
-    | instruccion
+    | instruccion 
 ;
 
 instruccion ::= comentario_linea
             | comentario_multilinea
             | consolewrite
+            | error TkPUNTOYCOMA
 ;
 
 comentario_linea ::= TkCOMENTnORMAL   {: /* No haces nada con los comentarios de una línea en la acción, simplemente los ignoras. */ :}
@@ -86,7 +115,9 @@ comentario_multilinea ::= TkCOMENTmULTI {: /* Haz algo con el comentario multili
 ;
 
 consolewrite ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresion:val TkPARENTESISCierra TkPUNTOYCOMA
-                {: statpy.Parser.resultado = statpy.Parser.resultado + func.Funcion.ConsoleWrite(val.toString()); :}
+                {: statpy.Parser.resultado = statpy.Parser.resultado + "print("+ val.toString()+")\n"; 
+                   func.Funcion.ConsoleWrite("print("+ val.toString()+")\n");
+                :}
 ;
 
 
