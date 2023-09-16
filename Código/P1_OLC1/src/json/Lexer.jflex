@@ -20,21 +20,25 @@ import java_cup.runtime.*;
 
 // ------> Expresiones Regulares 
 
-entero = [0-9]+
-comentario = []
-
+entero =[0-9]+ 
+decimal =([0-9]+\.[0-9]+|[0-9]+)
+cadena = [\"][^\"\n]*[\"]
+comentariomultilinea =[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
+comentariolinea =\/\/[^\n]*
 %%
 // ------------  Reglas Lexicas -------------------
-"("         {return new Symbol(sym.PARENTESIS_A, yycolumn, yyline, yytext());}
-")"         {return new Symbol(sym.PARENTESIS_C, yycolumn, yyline, yytext());}
-";"         {return new Symbol(sym.PUNTOYCOMA, yycolumn, yyline, yytext());}
+"{"         {return new Symbol(sym.TkJsLLAVEABRE, yycolumn, yyline, yytext());}
+"}"         {return new Symbol(sym.TkJsLLAVECIERRA, yycolumn, yyline, yytext());}
+":"         {return new Symbol(sym.TkJsDOSPUNTOS, yycolumn, yyline, yytext());}
+","         {return new Symbol(sym.TkJsCOMA, yycolumn, yyline, yytext());}
 
-"*"         {return new Symbol(sym.POR, yycolumn, yyline, yytext());}
-"+"         {return new Symbol(sym.MAS, yycolumn, yyline, yytext());}
 
-"mostrar"   {return new Symbol(sym.R_MOSTRAR, yycolumn, yyline, yytext());}
 
-{entero}  { return new Symbol(sym.ENTERO, yycolumn, yyline, yytext()); }
+
+{decimal}               { return new Symbol(sym.TkJsDECIMAL, yycolumn, yyline, yytext()); }
+{cadena}                { return new Symbol(sym.TkJsCADENA, yycolumn, yyline, yytext()); }
+{comentariomultilinea}  { return new Symbol(sym.TkJsCOMENTMULTI, yycolumn, yyline, yytext()); }
+{comentariolinea}       { return new Symbol(sym.TkJsCOMENTUNALINEA, yycolumn, yyline, yytext()); }
 
 
 

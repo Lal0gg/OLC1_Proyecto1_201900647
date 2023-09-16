@@ -27,7 +27,7 @@ import static func.Funcion.ErrorList;
 
 entero =[0-9]+ 
 decimal =([0-9]+\.[0-9]+|[0-9]+)
-cadena = [\"][^\"\n]+[\"]
+cadena = [\"][^\"\n]*[\"]
 comentariomultilinea =[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 comentariolinea =\/\/[^\n]*
 erchar =\'[a-zA-ZñÑ]\'

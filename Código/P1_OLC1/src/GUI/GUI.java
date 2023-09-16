@@ -32,13 +32,17 @@ import static func.Funcion.ErrorList;
 import static func.Funcion.TokenList;
 import static p1_olc1.P1_OLC1.analizarStatpy;
 import Reportes.ReporteTokens;
+import java.util.LinkedList;
+import traductionPy.indentPy;
 
 /**
  *
  * @author edujr
  */
 public class GUI extends javax.swing.JFrame {
-
+    
+    
+    public static String NombreActualArchivoJson = "";
     File archivoactual = null;
     RSyntaxTextArea textAreaGG = new RSyntaxTextArea();
     RSyntaxTextArea textAreaGG2 = new RSyntaxTextArea();
@@ -345,7 +349,9 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-
+    
+    
+    //metodo para abrir
     private void openAndDisplayFileContentt() {
         // TODO add your handling code here:
         JFileChooser NewChooser = new JFileChooser();
@@ -357,6 +363,9 @@ public class GUI extends javax.swing.JFrame {
         if (selex == JFileChooser.APPROVE_OPTION) {
             String content = "";
             archivoactual = NewChooser.getSelectedFile();
+            File archivo = new File(archivoactual.toString());
+            NombreActualArchivoJson = archivo.getName();
+            System.out.println("Jons - >  "+NombreActualArchivoJson);
             try {
                 Scanner input = new Scanner(archivoactual);
                 while (input.hasNextLine()) {
@@ -371,7 +380,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-
+    //boton guardar
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         File file = archivoactual;
@@ -387,6 +396,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    //boton guardar como
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         String text = textAreaGG.getText();
@@ -467,7 +477,70 @@ public class GUI extends javax.swing.JFrame {
             String textt = textAreaGG.getText();
             analizarStatpy(textt);
         } else if (jLabel4.getText() == "Json") {
+            pruebitaIndentationpy();
         }
+    }
+    
+      private void pruebitaIndentationpy() {
+        
+        LinkedList<StringBuilder> TraductionPyList = new LinkedList<>();
+
+        indentPy concatenationCounter = new indentPy();
+        indentPy concatenationCounter2 = new indentPy();
+        indentPy concatenationCounter3 = new indentPy();
+        indentPy concatenationCounter4 = new indentPy();
+        indentPy concatenationCounter5 = new indentPy();
+
+        
+        indentPy concatenationCounterx = new indentPy();
+        indentPy concatenationCounterx1 = new indentPy();
+        indentPy concatenationCounterx2 = new indentPy();
+        indentPy concatenationCounterx3 = new indentPy();
+
+
+
+        concatenationCounter.setIndentationLevel(0); // Establece el nivel de indentación
+        concatenationCounter2.setIndentationLevel(1);
+        concatenationCounter3.setIndentationLevel(2);
+        concatenationCounter4.setIndentationLevel(1);
+        concatenationCounter5.setIndentationLevel(2);
+        
+        concatenationCounterx.setIndentationLevel(0);
+        concatenationCounterx1.setIndentationLevel(1);
+        concatenationCounterx2.setIndentationLevel(2);
+        concatenationCounterx3.setIndentationLevel(2);
+
+
+
+        StringBuilder result = new StringBuilder();
+        StringBuilder result2 = new StringBuilder();
+
+        result.append(concatenationCounter.concatenateWithIndentation("switch: \n"));
+        result.append(concatenationCounter2.concatenateWithIndentation("case 1:\n"));
+        result.append(concatenationCounter3.concatenateWithIndentation("return \"zero\"\n"));
+        result.append(concatenationCounter4.concatenateWithIndentation("case 2:\n"));
+        result.append(concatenationCounter5.concatenateWithIndentation("return \"one\"\n"));        
+        TraductionPyList.add(result);
+        
+        result2.append(concatenationCounterx.concatenateWithIndentation("a = 1\n"));        
+        result2.append(concatenationCounterx1.concatenateWithIndentation("if(a==1):\n"));        
+        result2.append(concatenationCounterx2.concatenateWithIndentation("print(\"Hola Mundo xd\")\n"));        
+        result2.append(concatenationCounterx3.concatenateWithIndentation("print(\"UwU\")\n"));  
+        TraductionPyList.add(result2);
+        
+
+        
+
+//        System.out.println(result.toString());
+//        System.out.println(result2.toString());
+          String traduccion ="";
+        for (int i=0;i<TraductionPyList.size();i++){
+            System.out.println(TraductionPyList.get(i));
+            traduccion +=TraductionPyList.get(i);
+            textAreaGG2.setText(traduccion.toString());
+   
+        }
+
     }
 
     /**

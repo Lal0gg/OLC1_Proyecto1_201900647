@@ -28,14 +28,15 @@ public class Funcion {
     public static LinkedList<Erroor> TokenListJson = new LinkedList<>();
     
     public static LinkedList<Erroor> ErrorListJson = new LinkedList<>();
+    
     //            nameVariable -- valorvariable
     public static HashMap<String, String> HashMapFileJson = new HashMap<>();
     //            nameArchivoJson -- HashmapVariable
     public static HashMap<String, Integer> HashMapVariablesJson = new HashMap<>();
 
-    
-  
+   
    public static String ConsoleWrite(String expresion){
         return "System.out.println("+expresion+");";
+        
     } 
 }
