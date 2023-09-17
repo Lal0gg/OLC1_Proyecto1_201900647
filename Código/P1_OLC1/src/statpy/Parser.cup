@@ -4,8 +4,8 @@ package statpy;
 import java_cup.runtime.*;
 import clases.Erroor;
 import func.Funcion;
-
-
+import traductionPy.indentPy;
+import java.util.LinkedList; 
 
 
 //------> Codigo para el parser
@@ -54,9 +54,10 @@ terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewVa
 
 //------> Declaración de no terminales
 non terminal inicio;
-non terminal instruccion, mostrar;
-non terminal lista_instr;
-non terminal expresion;
+non terminal LinkedList instruccionTraduccion;
+non terminal instruccionGraficas;
+non terminal listainstrTraduccion, listainstrGraficas;
+non terminal expresionTraduccion, expresionGraficas;
 non terminal comentario_linea;
 non terminal comentario_multilinea;
 non terminal consolewrite;
@@ -73,58 +74,26 @@ start with inicio;
 // ------------>  Producciones  <------------
 
 
-/*
-inici = lista_instruc
 
-lista_instruc = lista_instruc instruccion
-                | instruccion
-
-instruccion = print;
-
-
-print = "Console" "." "write" ( expresion)
-
-expresion = entero
-        | double
-        | char
-        | true
-        | false
-
-
-
-
-*/
-
-inicio ::= lista_instr
+inicio::= TkVOID_R TkPARENTESISAbre  TkPARENTESISCierra  TkLLAVEA  listainstrTraduccion: lista TkLLAVEC
+                            {:   
+                                func.Funcion.ListaTraducccionPy = lista;
+                                
+                            :}
 ;
 
-lista_instr ::= lista_instr instruccion
-    | instruccion 
+listainstrTraduccion ::= listainstrTraduccion:lista  instruccionTraduccion: val 
+                                                            {: 
+                                                                lista.addAll(LinkedList)val;
+                                                                RESULT = (LinkedList) lista;
+                                                            :}
+                        | instruccionTraduccion:val            
+                                                            {:
+                                                                LinkedList<String> lista = new LinkedList<>();
+                                                                lista.addAll((LinkedList)val);
+                                                                RESULT = (LinkedList) lista;
+                                                            :}
+                        | error TkPUNTOYCOMA
 ;
 
-instruccion ::= comentario_linea
-            | comentario_multilinea
-            | consolewrite
-            | error TkPUNTOYCOMA
-;
-
-comentario_linea ::= TkCOMENTnORMAL   {: /* No haces nada con los comentarios de una línea en la acción, simplemente los ignoras. */ :}
-;
-
-comentario_multilinea ::= TkCOMENTmULTI {: /* Haz algo con el comentario multilinea, como almacenarlo o imprimirlo */ :}
-;
-
-consolewrite ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresion:val TkPARENTESISCierra TkPUNTOYCOMA
-                {: statpy.Parser.resultado = statpy.Parser.resultado + "print("+ val.toString()+")\n"; 
-                   func.Funcion.ConsoleWrite("print("+ val.toString()+")\n");
-                :}
-;
-
-
-
-expresion ::= TkENTERO:val    {: RESULT = Integer.parseInt(val); :}
-           | TkDECIMAL:val     {: RESULT = Double.parseDouble(val); :}
-           | TkCADENA:val      {: RESULT = val; :}
-
-
-;
+ 

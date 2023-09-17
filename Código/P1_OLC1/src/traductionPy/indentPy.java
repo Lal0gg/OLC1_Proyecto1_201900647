@@ -1,5 +1,7 @@
 package traductionPy;
 
+import static GUI.GUI.NombreActualArchivoJson;
+
 public class indentPy {
 
 private int count = 0;
@@ -30,6 +32,7 @@ private int count = 0;
         StringBuilder indentedText = new StringBuilder();
         indentedText.append(getIndentation()).append(text);
         incrementCount();
+     
         return indentedText.toString();
     }
 }

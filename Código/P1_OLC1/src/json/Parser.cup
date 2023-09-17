@@ -4,6 +4,8 @@ package json;
 import java_cup.runtime.*;
 import clases.Erroor;
 import func.Funcion;
+import clases.Simbolito;
+
 
 //------> Codigo para el parser
 //------> Declaracion de variables, funciones y funciones de error
@@ -82,9 +84,15 @@ contenidoJson ::=  lineaJson
                 |  lineaJson  TkJsCOMA contenidoJson
 ;
 
-lineaJson ::= TkJsCADENA:a  TkJsDOSPUNTOS valorJsonLinea:b {: RESULT = func.Funcion.HashMapVariablesJson.put(a,b.toString());:}
+lineaJson ::= TkJsCADENA:a  TkJsDOSPUNTOS valorJsonLinea:b {:
+
+                                                          Simbolito nuevoSimbolo = new Simbolito("", "", "");
+
+
+                                                        RESULT = func.Funcion.HashMapVariablesJson.put(a,b.toString());
+                                                           :}
 ;
 
-valorJsonLinea ::=  TkJsCADENA: val {: RESULT = val.toString(); :}
-                |   TkJsDECIMAL: val {: RESULT = val.toString(); :}
+valorJsonLinea ::=  TkJsCADENA: val {: RESULT = val; :}
+                |   TkJsDECIMAL: val {: RESULT = val; :}
 ;

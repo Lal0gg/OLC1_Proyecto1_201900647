@@ -9,6 +9,7 @@ import javax.swing.text.html.HTMLEditorKit.Parser;
 import func.*;
 import clases.Erroor;
 import clases.Token;
+import clases.Simbolito;
 import static func.Funcion.TokenList;
 import graficas.GraficaBarras;
 import java.util.LinkedList;
@@ -24,18 +25,18 @@ import traductionPy.indentPy;
 public class P1_OLC1 {
 
     public static void main(String[] args) {
-//        try {
-//            UIManager.setLookAndFeel(new McWinLookAndFeel());
-//        } catch (UnsupportedLookAndFeelException e) {
-//            System.err.println("No se pudo aplicar el Look and Feel deseado: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//
-//        GUI nuevaGUI = new GUI();
-//        nuevaGUI.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(new McWinLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            System.err.println("No se pudo aplicar el Look and Feel deseado: " + e.getMessage());
+            e.printStackTrace();
+        }
 
-//        analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
-        analizadorJson("src/json/", "Lexer.jflex", "Parser.cup");
+        GUI nuevaGUI = new GUI();
+        nuevaGUI.setVisible(true);
+        
+      //  analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
+        //analizadorJson("src/json/", "Lexer.jflex", "Parser.cup");
         String entrada = """
                          // Hola w 
                         // xdd -   f 5zx
