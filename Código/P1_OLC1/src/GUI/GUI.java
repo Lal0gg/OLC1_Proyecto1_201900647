@@ -32,6 +32,9 @@ import static func.Funcion.ErrorList;
 import static func.Funcion.TokenList;
 import static p1_olc1.P1_OLC1.analizarStatpy;
 import Reportes.ReporteTokens;
+import func.Funcion;
+import static func.Funcion.HashMapFileJson;
+import static func.Funcion.HashMapVariablesJson;
 import java.util.LinkedList;
 import traductionPy.indentPy;
 
@@ -349,10 +352,11 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-    
+   
     
     //metodo para abrir
     private void openAndDisplayFileContentt() {
+ 
         // TODO add your handling code here:
         JFileChooser NewChooser = new JFileChooser();
         FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Archivos SP y JSON (*.sp, *.json)", "sp", "json");
@@ -437,7 +441,7 @@ public class GUI extends javax.swing.JFrame {
     //boton reporte Tokens
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        if (jLabel4.getText() == "Statpy") {
+        if ("Statpy".equals(jLabel4.getText())) {
             ReporteTokens ReporteT1 = new ReporteTokens();
             ReporteT1.ReporteT(TokenList);
 
@@ -448,7 +452,10 @@ public class GUI extends javax.swing.JFrame {
                 System.out.print(" Línea: " + token.getLinea());
                 System.out.println(" Columna: " + token.getColumna());
             }
-        } else if (jLabel4.getText() == "Json") {
+        } else if ("Json".equals(jLabel4.getText())) {
+             System.out.println(HashMapVariablesJson); 
+             System.out.println(" ");
+             System.out.println(HashMapFileJson);
         }
 
 
@@ -456,7 +463,7 @@ public class GUI extends javax.swing.JFrame {
     //boton para errores
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        if (jLabel4.getText() == "Statpy") {
+        if ("Statpy".equals(jLabel4.getText())) {
             ReporteErrores ReporteE1 = new ReporteErrores();
             ReporteE1.ReporteErr(ErrorList);
             for (Erroor error : ErrorList) {
@@ -468,15 +475,18 @@ public class GUI extends javax.swing.JFrame {
                 System.out.println("---------------------------");
             }
 
-        } else if (jLabel4.getText() == "Json") {
+        } else if ("Json".equals(jLabel4.getText())) {
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void VerificarAnalizador() {
-        if (jLabel4.getText() == "Statpy") {
+        if ("Statpy".equals(jLabel4.getText())) {
             String textt = textAreaGG.getText();
             analizarStatpy(textt);
-        } else if (jLabel4.getText() == "Json") {
+        } else if ("Json".equals(jLabel4.getText())) {
+            String textt2 = textAreaGG.getText();
+            analizarJson(textt2);
+            Funcion.HashMapFileJson.put(NombreActualArchivoJson, HashMapVariablesJson);
             pruebitaIndentationpy();
         }
     }

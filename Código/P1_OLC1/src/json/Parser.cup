@@ -2,7 +2,8 @@
 package json;
 
 import java_cup.runtime.*;
-
+import clases.Erroor;
+import func.Funcion;
 
 //------> Codigo para el parser
 //------> Declaracion de variables, funciones y funciones de error
@@ -13,11 +14,16 @@ parser code
 
     public void syntax_error(Symbol s)
     {
+            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en  lenguaje Json sintact", s.right, s.left);
+            Funcion.ErrorList.add(errorsito);
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
     {
+            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en  lenguaje Json sintact", s.right, s.left);
+            Funcion.ErrorList.add(errorsito);
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
     }
 
@@ -33,14 +39,17 @@ action code
 terminal String TkJsLLAVEABRE, TkJsLLAVECIERRA;
 terminal String TkJsDOSPUNTOS, TkJsCOMA;
 terminal String TkJsDECIMAL,TkJsCADENA,TkJsCOMENTMULTI,TkJsCOMENTUNALINEA;
-terminal String ENTERO;
+
 
 
 //------> Declaración de no terminales
 non terminal inicio;
-non terminal instruccion, mostrar;
+non terminal instruccion;
 non terminal lista_instr;
-non terminal expresion;
+non terminal estructurajson;
+non terminal lineaJson;
+non terminal valorJsonLinea;
+non terminal contenidoJson;
 
 //------> PRECEDENCIA
 
@@ -58,5 +67,24 @@ lista_instr ::= lista_instr instruccion
     | instruccion
 ;
 
-instruccion ::= mostrar
+instruccion ::= estructurajson
+               | TkJsCOMENTMULTI
+               | TkJsCOMENTUNALINEA
+               | error  TkJsLLAVECIERRA
+;
+
+
+estructurajson ::= TkJsLLAVEABRE  contenidoJson    TkJsLLAVECIERRA
+;
+
+
+contenidoJson ::=  lineaJson
+                |  lineaJson  TkJsCOMA contenidoJson
+;
+
+lineaJson ::= TkJsCADENA:a  TkJsDOSPUNTOS valorJsonLinea:b {: RESULT = func.Funcion.HashMapVariablesJson.put(a,b.toString());:}
+;
+
+valorJsonLinea ::=  TkJsCADENA: val {: RESULT = val.toString(); :}
+                |   TkJsDECIMAL: val {: RESULT = val.toString(); :}
 ;

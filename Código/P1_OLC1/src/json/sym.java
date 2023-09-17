@@ -8,25 +8,27 @@ package json;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int ENTERO = 8;
-  public static final int POR = 5;
+  public static final int TkJsCOMENTUNALINEA = 9;
+  public static final int TkJsDECIMAL = 6;
   public static final int EOF = 0;
-  public static final int MAS = 6;
+  public static final int TkJsLLAVEABRE = 2;
   public static final int error = 1;
-  public static final int PARENTESIS_C = 3;
-  public static final int R_MOSTRAR = 7;
-  public static final int PUNTOYCOMA = 4;
-  public static final int PARENTESIS_A = 2;
+  public static final int TkJsCOMA = 5;
+  public static final int TkJsCOMENTMULTI = 8;
+  public static final int TkJsLLAVECIERRA = 3;
+  public static final int TkJsDOSPUNTOS = 4;
+  public static final int TkJsCADENA = 7;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "PARENTESIS_A",
-  "PARENTESIS_C",
-  "PUNTOYCOMA",
-  "POR",
-  "MAS",
-  "R_MOSTRAR",
-  "ENTERO"
+  "TkJsLLAVEABRE",
+  "TkJsLLAVECIERRA",
+  "TkJsDOSPUNTOS",
+  "TkJsCOMA",
+  "TkJsDECIMAL",
+  "TkJsCADENA",
+  "TkJsCOMENTMULTI",
+  "TkJsCOMENTUNALINEA"
   };
 }
 

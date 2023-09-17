@@ -30,9 +30,9 @@ public class Funcion {
     public static LinkedList<Erroor> ErrorListJson = new LinkedList<>();
     
     //            nameVariable -- valorvariable
-    public static HashMap<String, String> HashMapFileJson = new HashMap<>();
+    public static HashMap<String, HashMap> HashMapFileJson = new HashMap<>();
     //            nameArchivoJson -- HashmapVariable
-    public static HashMap<String, Integer> HashMapVariablesJson = new HashMap<>();
+    public static HashMap<String, String> HashMapVariablesJson = new HashMap<>();
 
    
    public static String ConsoleWrite(String expresion){

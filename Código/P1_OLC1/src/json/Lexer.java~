@@ -6,7 +6,9 @@
 package json; 
 
 import java_cup.runtime.*;
-
+import clases.Erroor;
+import clases.Token;
+import func.Funcion;
 
 @SuppressWarnings("fallthrough")
 public class Lexer implements java_cup.runtime.Scanner {
@@ -64,14 +66,14 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\2\1\1\2\2\1\22\0\1\1\7\0\1\3"+
-    "\1\4\1\5\1\6\4\0\12\7\1\0\1\10\5\0"+
-    "\1\11\1\0\1\12\1\0\1\13\3\0\1\14\3\0"+
-    "\1\15\1\16\1\17\2\0\1\20\1\21\1\22\14\0"+
-    "\1\11\1\0\1\12\1\0\1\13\3\0\1\14\3\0"+
-    "\1\15\1\16\1\17\2\0\1\20\1\21\1\22\20\0"+
-    "\1\2\252\0\2\14\115\0\1\21\u01a8\0\2\2\326\0"+
-    "\u0100\2";
+    "\11\0\1\1\1\2\1\3\2\1\22\0\1\1\1\0"+
+    "\1\4\7\0\1\5\1\0\1\6\1\0\1\7\1\10"+
+    "\12\11\1\12\6\0\1\13\1\0\1\14\1\0\1\15"+
+    "\3\0\1\16\3\0\1\17\1\20\1\21\2\0\1\22"+
+    "\1\0\1\23\14\0\1\13\1\0\1\14\1\0\1\15"+
+    "\3\0\1\16\3\0\1\17\1\20\1\21\2\0\1\22"+
+    "\1\0\1\23\6\0\1\24\1\0\1\25\7\0\1\3"+
+    "\252\0\2\16\u01f6\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1280];
@@ -98,11 +100,12 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
-    "\1\10\2\1\13\0\1\11\2\0\1\12";
+    "\1\0\1\1\1\2\1\1\1\3\1\1\1\4\1\5"+
+    "\1\1\1\6\1\7\1\0\1\10\1\0\1\11\3\0"+
+    "\1\4\1\0\1\12\6\0\1\13";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[26];
+    int [] result = new int[28];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -127,13 +130,13 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\23\0\23\0\23\0\23\0\23\0\23\0\46"+
-    "\0\23\0\71\0\114\0\137\0\162\0\205\0\230\0\253"+
-    "\0\276\0\321\0\344\0\367\0\u010a\0\u011d\0\23\0\u0130"+
-    "\0\u0143\0\23";
+    "\0\0\0\26\0\26\0\54\0\26\0\102\0\130\0\26"+
+    "\0\156\0\26\0\26\0\54\0\26\0\204\0\232\0\260"+
+    "\0\306\0\334\0\260\0\362\0\26\0\u0108\0\u011e\0\u0134"+
+    "\0\u014a\0\u0160\0\u0176\0\26";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[26];
+    int [] result = new int[28];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -156,15 +159,17 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\0\1\4\1\5\1\6\1\7\1\10"+
-    "\1\11\1\2\1\12\2\2\1\13\5\2\32\0\1\10"+
-    "\32\0\1\14\22\0\1\15\20\0\1\16\26\0\1\17"+
-    "\14\0\1\20\31\0\1\21\16\0\1\22\24\0\1\23"+
-    "\24\0\1\24\11\0\1\25\22\0\1\26\31\0\1\27"+
-    "\22\0\1\30\16\0\1\31\25\0\1\32\3\0";
+    "\1\2\2\3\1\0\1\4\1\2\1\5\1\2\1\6"+
+    "\1\7\1\10\1\2\1\11\7\2\1\12\1\13\26\0"+
+    "\2\14\1\0\1\14\1\15\21\14\5\0\1\16\2\0"+
+    "\1\17\24\0\1\20\1\0\1\7\35\0\1\21\4\0"+
+    "\5\16\1\22\20\16\2\17\1\0\23\17\11\0\1\23"+
+    "\33\0\1\24\6\0\5\16\1\22\2\16\1\25\15\16"+
+    "\15\0\1\26\30\0\1\27\30\0\1\30\15\0\1\31"+
+    "\34\0\1\32\21\0\1\33\30\0\1\34\4\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[342];
+    int [] result = new int[396];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -207,11 +212,12 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\6\11\1\1\1\11\2\1\13\0\1\11\2\0"+
-    "\1\11";
+    "\1\0\2\11\1\1\1\11\2\1\1\11\1\1\2\11"+
+    "\1\0\1\11\1\0\1\1\3\0\1\1\1\0\1\11"+
+    "\6\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[26];
+    int [] result = new int[28];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -715,55 +721,60 @@ public class Lexer implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn);
+            { Erroor errorsito = new Erroor("Lexico Json", yytext() ,"No es válido en este lenguaje", yyline, yycolumn);Funcion.ErrorList.add(errorsito); System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn);
             }
           // fall through
-          case 11: break;
+          case 12: break;
           case 2:
             { /* Espacios en blanco se ignoran */
             }
           // fall through
-          case 12: break;
-          case 3:
-            { return new Symbol(sym.PARENTESIS_A, yycolumn, yyline, yytext());
-            }
-          // fall through
           case 13: break;
-          case 4:
-            { return new Symbol(sym.PARENTESIS_C, yycolumn, yyline, yytext());
+          case 3:
+            { Token NuevoToken = new Token("TkJsCOMA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMA> Tk: " + yytext());return new Symbol(sym.TkJsCOMA, yycolumn, yyline, yytext());
             }
           // fall through
           case 14: break;
-          case 5:
-            { return new Symbol(sym.POR, yycolumn, yyline, yytext());
+          case 4:
+            { Token NuevoToken = new Token("TkJsDECIMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsDECIMAL> Tk: " + yytext());return new Symbol(sym.TkJsDECIMAL, yycolumn, yyline, yytext());
             }
           // fall through
           case 15: break;
-          case 6:
-            { return new Symbol(sym.MAS, yycolumn, yyline, yytext());
+          case 5:
+            { Token NuevoToken = new Token("TkJsDOSPUNTOS",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsDOSPUNTOS> Tk: " + yytext());return new Symbol(sym.TkJsDOSPUNTOS, yycolumn, yyline, yytext());
             }
           // fall through
           case 16: break;
-          case 7:
-            { return new Symbol(sym.ENTERO, yycolumn, yyline, yytext());
+          case 6:
+            { Token NuevoToken = new Token("TkJsLLAVEABRE",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsLLAVEABRE> Tk: " + yytext());return new Symbol(sym.TkJsLLAVEABRE, yycolumn, yyline, yytext());
             }
           // fall through
           case 17: break;
-          case 8:
-            { return new Symbol(sym.PUNTOYCOMA, yycolumn, yyline, yytext());
+          case 7:
+            { Token NuevoToken = new Token("TkJsLLAVECIERRA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsLLAVECIERRA> Tk: " + yytext()); return new Symbol(sym.TkJsLLAVECIERRA, yycolumn, yyline, yytext());
             }
           // fall through
           case 18: break;
-          case 9:
-            { return new Symbol(sym.R_MOSTRAR, yycolumn, yyline, yytext());
+          case 8:
+            { Token NuevoToken = new Token("TkJsCADENA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCADENA> Tk: " + yytext()); return new Symbol(sym.TkJsCADENA, yycolumn, yyline, yytext());
             }
           // fall through
           case 19: break;
-          case 10:
-            { 
+          case 9:
+            { Token NuevoToken = new Token("TkJsCOMENTUNALINEA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMENTUNALINEA> Tk: " + yytext());return new Symbol(sym.TkJsCOMENTUNALINEA, yycolumn, yyline, yytext());
             }
           // fall through
           case 20: break;
+          case 10:
+            { Token NuevoToken = new Token("TkJsCOMENTMULTI",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMENTMULTI> Tk: " + yytext());return new Symbol(sym.TkJsCOMENTMULTI, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 21: break;
+          case 11:
+            { 
+            }
+          // fall through
+          case 22: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
