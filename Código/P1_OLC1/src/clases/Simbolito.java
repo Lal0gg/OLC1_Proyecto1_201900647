@@ -9,10 +9,11 @@ package clases;
  * @author edujr
  */
 public class Simbolito {
+
     private String symbolt;
     private String valuet;
     private String typet;
-    
+
     public Simbolito(String symbolt, String valuet, String typet) {
         this.symbolt = symbolt;
         this.valuet = valuet;
@@ -60,5 +61,10 @@ public class Simbolito {
     public void setTypet(String typet) {
         this.typet = typet;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Symbol: " + symbolt + ", Value: " + valuet + ", Type: " + typet;
+    }
+
 }

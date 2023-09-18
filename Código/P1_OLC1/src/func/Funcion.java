@@ -37,14 +37,17 @@ public class Funcion {
     
     public static int ContadorIndentacion =0;
     
+    
+    public static LinkedList<String> ListaSimbolosParaHash = new LinkedList<>();
+    
     //            nameVariable -- valorvariable
-    public static HashMap<String, HashMap> HashMapFileJson = new HashMap<>();
+    public static HashMap<String, LinkedList<Simbolito>> HashMapFileJson = new HashMap<>();
     //            nameArchivoJson -- HashmapVariable
     public static HashMap<String, String> HashMapVariablesJson = new HashMap<>();
 
    
    public static String ConsoleWrite(String expresion){
-       
+        
         return "System.out.println("+expresion+");";
         
     } 

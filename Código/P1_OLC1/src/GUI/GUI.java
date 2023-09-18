@@ -32,6 +32,7 @@ import static func.Funcion.ErrorList;
 import static func.Funcion.TokenList;
 import static p1_olc1.P1_OLC1.analizarStatpy;
 import Reportes.ReporteTokens;
+import clases.Simbolito;
 import func.Funcion;
 import static func.Funcion.HashMapFileJson;
 import static func.Funcion.HashMapVariablesJson;
@@ -44,8 +45,7 @@ import traductionPy.indentPy;
  * @author edujr
  */
 public class GUI extends javax.swing.JFrame {
-    
-    
+
     public static String NombreActualArchivoJson = "";
     File archivoactual = null;
     RSyntaxTextArea textAreaGG = new RSyntaxTextArea();
@@ -353,11 +353,10 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-   
-    
+
     //metodo para abrir
     private void openAndDisplayFileContentt() {
- 
+
         // TODO add your handling code here:
         JFileChooser NewChooser = new JFileChooser();
         FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Archivos SP y JSON (*.sp, *.json)", "sp", "json");
@@ -370,7 +369,7 @@ public class GUI extends javax.swing.JFrame {
             archivoactual = NewChooser.getSelectedFile();
             File archivo = new File(archivoactual.toString());
             NombreActualArchivoJson = archivo.getName();
-            System.out.println("Jons - >  "+NombreActualArchivoJson);
+            System.out.println("Jons - >  " + NombreActualArchivoJson);
             try {
                 Scanner input = new Scanner(archivoactual);
                 while (input.hasNextLine()) {
@@ -454,12 +453,17 @@ public class GUI extends javax.swing.JFrame {
                 System.out.println(" Columna: " + token.getColumna());
             }
         } else if ("Json".equals(jLabel4.getText())) {
-             System.out.println(HashMapFileJson); 
-             
-             for (String i: HashMapFileJson.keySet()){
-                 System.out.println("Key: " + i + " Value: " + HashMapFileJson.get(i));
-             }
-             
+            //System.out.println(HashMapFileJson); 
+            System.out.println(HashMapFileJson);
+            for (String i : HashMapFileJson.keySet()) {
+                System.out.println("Key: " + i);
+                LinkedList<Simbolito> listaSimbolos = HashMapFileJson.get(i);
+                for (Simbolito simbolito : listaSimbolos) {
+                    System.out.println("Value: " + simbolito.toString()); // Utiliza la implementación personalizada de toString() de Simbolito
+                }
+
+            }
+
         }
 
 
@@ -488,10 +492,10 @@ public class GUI extends javax.swing.JFrame {
             String textt = textAreaGG.getText();
             analizarStatpy(textt);
         } else if ("Json".equals(jLabel4.getText())) {
-            
+
             String textt2 = textAreaGG.getText();
             analizarJson(textt2);
-            Funcion.HashMapFileJson.put(NombreActualArchivoJson, HashMapVariablesJson);
+       
 //            pruebitaIndentationpy();
         }
     }

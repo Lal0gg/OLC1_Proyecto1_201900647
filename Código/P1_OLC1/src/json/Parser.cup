@@ -5,14 +5,19 @@ import java_cup.runtime.*;
 import clases.Erroor;
 import func.Funcion;
 import clases.Simbolito;
+import GUI.*;
+import java.util.LinkedList;
 
 
 //------> Codigo para el parser
 //------> Declaracion de variables, funciones y funciones de error
 
+
 parser code 
 {:
     public static String resultado = ""; 
+    public static String Tipo ="";
+
 
     public void syntax_error(Symbol s)
     {
@@ -85,14 +90,12 @@ contenidoJson ::=  lineaJson
 ;
 
 lineaJson ::= TkJsCADENA:a  TkJsDOSPUNTOS valorJsonLinea:b {:
-
-                                                          Simbolito nuevoSimbolo = new Simbolito("", "", "");
-
-
-                                                        RESULT = func.Funcion.HashMapVariablesJson.put(a,b.toString());
+                                                                String KeyNameJson = GUI.NombreActualArchivoJson;
+                                                                Funcion.HashMapFileJson.computeIfAbsent(KeyNameJson, k -> new LinkedList<>()).add(new Simbolito(a, b.toString(), Tipo));
+                                                                RESULT = Funcion.HashMapFileJson.get(KeyNameJson);
                                                            :}
 ;
 
-valorJsonLinea ::=  TkJsCADENA: val {: RESULT = val; :}
-                |   TkJsDECIMAL: val {: RESULT = val; :}
+valorJsonLinea ::=  TkJsCADENA: val {:  Tipo = "Cadena"; RESULT = val; :}
+                |   TkJsDECIMAL: val {: Tipo = "Double"; RESULT = val; :}
 ;

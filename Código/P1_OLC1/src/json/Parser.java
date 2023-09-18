@@ -8,6 +8,9 @@ package json;
 import java_cup.runtime.*;
 import clases.Erroor;
 import func.Funcion;
+import clases.Simbolito;
+import GUI.*;
+import java.util.LinkedList;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -117,6 +120,8 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
     public static String resultado = ""; 
+    public static String Tipo ="";
+
 
     public void syntax_error(Symbol s)
     {
@@ -275,7 +280,11 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 RESULT = func.Funcion.HashMapVariablesJson.put(a,b.toString());
+		
+                                                                String KeyNameJson = GUI.NombreActualArchivoJson;
+                                                                Funcion.HashMapFileJson.computeIfAbsent(KeyNameJson, k -> new LinkedList<>()).add(new Simbolito(a, b.toString(), Tipo));
+                                                                RESULT = Funcion.HashMapFileJson.get(KeyNameJson);
+                                                           
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("lineaJson",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -287,7 +296,7 @@ class CUP$Parser$actions {
 		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 RESULT = val; 
+		  Tipo = "Cadena"; RESULT = val; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("valorJsonLinea",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -299,7 +308,7 @@ class CUP$Parser$actions {
 		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 RESULT = val; 
+		 Tipo = "Double"; RESULT = val; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("valorJsonLinea",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

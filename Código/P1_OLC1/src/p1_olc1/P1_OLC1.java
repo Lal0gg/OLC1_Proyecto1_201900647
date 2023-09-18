@@ -31,12 +31,13 @@ public class P1_OLC1 {
             System.err.println("No se pudo aplicar el Look and Feel deseado: " + e.getMessage());
             e.printStackTrace();
         }
+        
 
         GUI nuevaGUI = new GUI();
         nuevaGUI.setVisible(true);
-        
+      
       //  analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
-        //analizadorJson("src/json/", "Lexer.jflex", "Parser.cup");
+        analizadorJson("src/json/", "Lexer.jflex", "Parser.cup");
         String entrada = """
                          // Hola w 
                         // xdd -   f 5zx
