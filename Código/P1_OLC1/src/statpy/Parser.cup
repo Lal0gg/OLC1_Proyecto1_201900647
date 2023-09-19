@@ -19,14 +19,14 @@ parser code
     {       
             Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
             Funcion.ErrorList.add(errorsito);
-            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );        
+            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );        
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
     {       
             Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
             Funcion.ErrorList.add(errorsito);
-            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
     }
 
 :}
@@ -41,8 +41,8 @@ action code
 terminal String TkENTERO, TkDECIMAL ,TkCOMENTmULTI, TkCOMENTnORMAL,TkCADENA,TkErChar;
 terminal String TkSUMA,R_MOSTRAR,TkMULTIPLICACION,TkRESTA,TkDIVISION,TkIGUAL;
 terminal String TkPUNTOYCOMA,TkDOSPUNTOS,TkPUNTO,TkCOMA;
-terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra,TkCORCHETEAbre,TkCORCHETECierra;
-terminal String TkMAYORQUE, TkMENORQUE, TkMAYORIGUAL, TkMENORIGUAL,TkIGUALIGUAL,TkSignoDolar;
+terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra,TkCORCHETEAbre,TkCORCHETECierra,TkCorchetesArreglo;
+terminal String TkMAYORQUE, TkMENORQUE, TkMAYORIGUAL, TkMENORIGUAL,TkIGUALIGUAL,TkSignoDolar,TkIDISTINTO;
 terminal String TkAND,TkOR, TkNOT,TkIncremento;
 terminal String TkINT_R,TkDOUBLE_R,TkCHAR_R,TkBOOL_R,TkSTRING_R;
 terminal String TkVOID_R,TkMAIN_R;
@@ -50,21 +50,28 @@ terminal String TkIF_R, TkELSE_R, TkCASE_R,TkBRAKE_R,TkDEFAULT_R;
 terminal String TkCONSOLE_R,TkWRITE_R;
 terminal String TkFOR_R, TkDO_R,TkWHILE_R;
 terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewValor;
+terminal String TkEjeX,TkTituloX,TkTituloY,TkTitulo,TkValores;
 
 
 //------> Declaración de no terminales
 non terminal inicio;
-non terminal LinkedList instruccionTraduccion;
+non terminal instruccionTraduccion;
 non terminal instruccionGraficas;
-non terminal listainstrTraduccion, listainstrGraficas;
+non terminal LinkedList listainstrTraduccion;
+non terminal listainstrGraficas;
 non terminal expresionTraduccion, expresionGraficas;
-non terminal comentario_linea;
-non terminal comentario_multilinea;
-non terminal consolewrite;
+non terminal instruccionIF, instruccionConsoleWr, instruccionWhile;
+
+
 
 //------> PRECEDENCIA
-precedence left TkSUMA, TkRESTA;
+//precedence left TkOR;
+//precedence left TkAND;
+//precedence right TkNOT;
+//precedente left TkIGUALIGUAL,TkIDISTINTO,TkMENORQUE,TkMENORIGUAL,TkMAYORQUE,TkMAYORIGUAL; 
+precedence left TkRESTA,TkSUMA;
 precedence left TkMULTIPLICACION, TkDIVISION;
+precedence right TkRESTA;
 
 
 //------> Definir Simbolo Inicial
@@ -75,25 +82,73 @@ start with inicio;
 
 
 
-inicio::= TkVOID_R TkPARENTESISAbre  TkPARENTESISCierra  TkLLAVEA  listainstrTraduccion: lista TkLLAVEC
+inicio::= TkVOID_R TkMAIN_R TkPARENTESISAbre  TkPARENTESISCierra  TkLLAVEA  listainstrTraduccion:lista TkLLAVEC
                             {:   
-                                func.Funcion.ListaTraducccionPy = lista;
+                            
+                            LinkedList<String> listaN = new LinkedList<>();
+                            listaN.add("def main( ):");
+                            func.Funcion.ContadorIndentacion++;
+                            listaN.addAll(func.Funcion.IndentacionPY(lista));
+                            func.Funcion.ContadorIndentacion--;
+                            listaN.add("if__name__ = \"__main__\":\n\tmain()");
+                            func.Funcion.ListaTraducccionPy = listaN;
                                 
                             :}
 ;
 
 listainstrTraduccion ::= listainstrTraduccion:lista  instruccionTraduccion: val 
-                                                            {: 
-                                                                lista.addAll(LinkedList)val;
-                                                                RESULT = (LinkedList) lista;
-                                                            :}
+                            {: 
+                                lista.addAll((LinkedList) val);
+                                RESULT = (LinkedList) lista;
+                            :}
                         | instruccionTraduccion:val            
-                                                            {:
-                                                                LinkedList<String> lista = new LinkedList<>();
-                                                                lista.addAll((LinkedList)val);
-                                                                RESULT = (LinkedList) lista;
-                                                            :}
-                        | error TkPUNTOYCOMA
+                            {:
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.addAll((LinkedList)val);
+                                RESULT = (LinkedList) lista;
+                            :}
 ;
+
+instruccionTraduccion ::= instruccionConsoleWr: val {:RESULT = val;:}
+                         | instruccionIF: val {:RESULT = val;:}
+;
+
+
+expresionTraduccion ::= expresionTraduccion: a  TkSUMA  expresionTraduccion:b {:RESULT =  a.toString()+"+"+b.toString() ;:}
+                    |expresionTraduccion: a  TkRESTA  expresionTraduccion:b {: RESULT = a.toString()+"-"+b.toString();:}
+                    |expresionTraduccion: a  TkMULTIPLICACION expresionTraduccion:b {:RESULT = a.toString()+"*"+b.toString() ;:}
+                    |expresionTraduccion: a  TkDIVISION   expresionTraduccion:b {:RESULT = a.toString()+"/"+b.toString() ;:}
+                    |TkENTERO: val {:RESULT = val;:}
+;
+
+
+
+
+instruccionConsoleWr ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresionTraduccion:val TkPARENTESISCierra TkPUNTOYCOMA
+                        {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("print("+val+")");
+                            RESULT = lista;
+                        :}
+;
+
+instruccionIF ::=  TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad TkLLAVEC
+                        {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("if " + exp + ":");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
+                            func.Funcion.ContadorIndentacion--;
+                            RESULT = lista;
+                        :}
+;
+
+
+
+
+
+
+
+
 
  

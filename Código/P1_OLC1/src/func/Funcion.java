@@ -21,10 +21,10 @@ import java.util.LinkedList;
 
 public class Funcion {
     
-    
+    //en uso
     public static LinkedList<Token> TokenList = new LinkedList<>();
     
- 
+     //en uso
     public static LinkedList<Erroor> ErrorList = new LinkedList<>();
 
     public static LinkedList<Erroor> TokenListJson = new LinkedList<>();
@@ -33,11 +33,13 @@ public class Funcion {
     
     public static LinkedList<Simbolito> ListaSimbolos = new LinkedList<>();
     
+    //en uso
+
     public static LinkedList<String> ListaTraducccionPy = new LinkedList<>();
-    
+    //en uso   
     public static int ContadorIndentacion =0;
     
-    
+    //en uso  
     public static LinkedList<String> ListaSimbolosParaHash = new LinkedList<>();
     
     //            nameVariable -- valorvariable

@@ -8,6 +8,8 @@ package statpy;
 import java_cup.runtime.*;
 import clases.Erroor;
 import func.Funcion;
+import traductionPy.indentPy;
+import java.util.LinkedList;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -33,8 +35,11 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\005\000\002\002\004\000\002\002\010\000\002\005" +
-    "\004\000\002\005\003\000\002\005\004" });
+    "\000\015\000\002\002\004\000\002\002\011\000\002\005" +
+    "\004\000\002\005\003\000\002\003\003\000\002\003\003" +
+    "\000\002\007\005\000\002\007\005\000\002\007\005\000" +
+    "\002\007\005\000\002\007\003\000\002\012\011\000\002" +
+    "\011\011" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -42,13 +47,31 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\015\000\004\051\004\001\002\000\004\026\007\001" +
+    "\000\045\000\004\053\004\001\002\000\004\054\007\001" +
     "\002\000\004\002\006\001\002\000\004\002\001\001\002" +
-    "\000\004\027\010\001\002\000\004\024\011\001\002\000" +
-    "\004\003\014\001\002\000\004\025\ufffe\001\002\000\004" +
-    "\025\017\001\002\000\004\020\015\001\002\000\004\025" +
-    "\ufffd\001\002\000\004\025\uffff\001\002\000\004\002\000" +
-    "\001\002" });
+    "\000\004\026\010\001\002\000\004\027\011\001\002\000" +
+    "\004\024\012\001\002\000\006\055\017\062\016\001\002" +
+    "\000\010\025\ufffe\055\ufffe\062\ufffe\001\002\000\010\025" +
+    "\047\055\017\062\016\001\002\000\010\025\ufffc\055\ufffc" +
+    "\062\ufffc\001\002\000\004\022\041\001\002\000\004\026" +
+    "\021\001\002\000\010\025\ufffd\055\ufffd\062\ufffd\001\002" +
+    "\000\004\004\022\001\002\000\014\012\ufff7\014\ufff7\015" +
+    "\ufff7\016\ufff7\027\ufff7\001\002\000\014\012\026\014\030" +
+    "\015\025\016\024\027\027\001\002\000\004\004\022\001" +
+    "\002\000\004\004\022\001\002\000\004\004\022\001\002" +
+    "\000\004\024\032\001\002\000\004\004\022\001\002\000" +
+    "\014\012\ufff9\014\ufff9\015\025\016\ufff9\027\ufff9\001\002" +
+    "\000\006\055\017\062\016\001\002\000\010\025\035\055" +
+    "\017\062\016\001\002\000\010\025\uffff\055\uffff\062\uffff" +
+    "\001\002\000\010\025\ufff5\055\ufff5\062\ufff5\001\002\000" +
+    "\014\012\ufffb\014\030\015\025\016\024\027\ufffb\001\002" +
+    "\000\014\012\ufffa\014\ufffa\015\025\016\ufffa\027\ufffa\001" +
+    "\002\000\014\012\ufff8\014\ufff8\015\025\016\ufff8\027\ufff8" +
+    "\001\002\000\004\063\042\001\002\000\004\026\043\001" +
+    "\002\000\004\004\022\001\002\000\014\012\026\014\030" +
+    "\015\025\016\024\027\045\001\002\000\004\020\046\001" +
+    "\002\000\010\025\ufff6\055\ufff6\062\ufff6\001\002\000\004" +
+    "\002\000\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -56,10 +79,20 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\015\000\004\002\004\001\001\000\002\001\001\000" +
+    "\000\045\000\004\002\004\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\006\003\011\005\012\001\001\000\002\001" +
-    "\001\000\004\003\015\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\012\003\012\005\013\011" +
+    "\014\012\017\001\001\000\002\001\001\000\010\003\033" +
+    "\011\014\012\017\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\007\022" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\007" +
+    "\037\001\001\000\004\007\036\001\001\000\004\007\035" +
+    "\001\001\000\002\001\001\000\004\007\030\001\001\000" +
+    "\002\001\001\000\012\003\012\005\032\011\014\012\017" +
+    "\001\001\000\010\003\033\011\014\012\017\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\007\043\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
@@ -105,14 +138,14 @@ public class Parser extends java_cup.runtime.lr_parser {
     {       
             Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
             Funcion.ErrorList.add(errorsito);
-            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );        
+            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );        
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
     {       
             Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
             Funcion.ErrorList.add(errorsito);
-            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
     }
 
 
@@ -158,19 +191,41 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // inicio ::= TkVOID_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA listainstrTraduccion TkLLAVEC 
+          case 1: // inicio ::= TkVOID_R TkMAIN_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA listainstrTraduccion TkLLAVEC 
             {
               Object RESULT =null;
-
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+		int listaleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int listaright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		LinkedList lista = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		   
+                            
+                            LinkedList<String> listaN = new LinkedList<>();
+                            listaN.add("def main( ):");
+                            func.Funcion.ContadorIndentacion++;
+                            listaN.addAll(func.Funcion.IndentacionPY(lista));
+                            func.Funcion.ContadorIndentacion--;
+                            listaN.add("if__name__ = \"__main__\":\n\tmain()");
+                            func.Funcion.ListaTraducccionPy = listaN;
+                                
+                            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 2: // listainstrTraduccion ::= listainstrTraduccion instruccionTraduccion 
             {
-              Object RESULT =null;
-
+              LinkedList RESULT =null;
+		int listaleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int listaright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		LinkedList lista = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 
+                                lista.addAll((LinkedList) val);
+                                RESULT = (LinkedList) lista;
+                            
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("listainstrTraduccion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -178,18 +233,150 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // listainstrTraduccion ::= instruccionTraduccion 
             {
-              Object RESULT =null;
-
+              LinkedList RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.addAll((LinkedList)val);
+                                RESULT = (LinkedList) lista;
+                            
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("listainstrTraduccion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // listainstrTraduccion ::= error TkPUNTOYCOMA 
+          case 4: // instruccionTraduccion ::= instruccionConsoleWr 
             {
               Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		RESULT = val;
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccionTraduccion",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("listainstrTraduccion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // instruccionTraduccion ::= instruccionIF 
+            {
+              Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		RESULT = val;
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccionTraduccion",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // expresionTraduccion ::= expresionTraduccion TkSUMA expresionTraduccion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		RESULT =  a.toString()+"+"+b.toString() ;
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresionTraduccion",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // expresionTraduccion ::= expresionTraduccion TkRESTA expresionTraduccion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 RESULT = a.toString()+"-"+b.toString();
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresionTraduccion",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // expresionTraduccion ::= expresionTraduccion TkMULTIPLICACION expresionTraduccion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		RESULT = a.toString()+"*"+b.toString() ;
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresionTraduccion",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // expresionTraduccion ::= expresionTraduccion TkDIVISION expresionTraduccion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		RESULT = a.toString()+"/"+b.toString() ;
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresionTraduccion",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // expresionTraduccion ::= TkENTERO 
+            {
+              Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		RESULT = val;
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresionTraduccion",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // instruccionConsoleWr ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresionTraduccion TkPARENTESISCierra TkPUNTOYCOMA 
+            {
+              Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("print("+val+")");
+                            RESULT = lista;
+                        
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccionConsoleWr",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // instruccionIF ::= TkIF_R TkPARENTESISAbre expresionTraduccion TkPARENTESISCierra TkLLAVEA listainstrTraduccion TkLLAVEC 
+            {
+              Object RESULT =null;
+		int expleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).left;
+		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).right;
+		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
+		int listaInstTradleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int listaInstTradright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		LinkedList listaInstTrad = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("if " + exp + ":");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
+                            func.Funcion.ContadorIndentacion--;
+                            RESULT = lista;
+                        
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccionIF",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
