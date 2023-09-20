@@ -31,7 +31,7 @@ cadena = [\"][^\"\n]*[\"]
 comentariomultilinea =[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 comentariolinea =\/\/[^\n]*
 erchar =\'[a-zA-ZñÑ]\'
-
+identificador = [a-z][a-z0-9_]*
 
 //    [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]     
 //    /\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/
@@ -108,7 +108,8 @@ erchar =\'[a-zA-ZñÑ]\'
 "TituloY"               {Token NuevoToken = new Token("TkTituloY",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTituloY> Tk: "  + yytext());return new Symbol(sym.TkTituloY, yycolumn, yyline, yytext());}
 "Titulo"                {Token NuevoToken = new Token("TkTitulo",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTitulo> Tk: "  + yytext());return new Symbol(sym.TkTitulo, yycolumn, yyline, yytext());}
 "Valores"               {Token NuevoToken = new Token("TkValores",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkValores> Tk: "  + yytext());return new Symbol(sym.TkValores, yycolumn, yyline, yytext());}
-
+"true"                  {Token NuevoToken = new Token("TkTrue",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTrue> Tk: "  + yytext());return new Symbol(sym.TkTrue, yycolumn, yyline, yytext());}
+"false"                 {Token NuevoToken = new Token("TkFalse",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkFalse> Tk: "  + yytext());return new Symbol(sym.TkFalse, yycolumn, yyline, yytext());}
 
 
 

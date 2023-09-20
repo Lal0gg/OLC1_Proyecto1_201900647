@@ -8,6 +8,7 @@ package statpy;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
+  public static final int TkFalse = 63;
   public static final int TkSTRING_R = 40;
   public static final int TkENTERO = 2;
   public static final int TkPARENTESISAbre = 20;
@@ -20,6 +21,7 @@ public class sym {
   public static final int TkIF_R = 43;
   public static final int TkPUNTOYCOMA = 14;
   public static final int TkValores = 61;
+  public static final int TkTrue = 62;
   public static final int TkTitulo = 60;
   public static final int TkCorchetesArreglo = 24;
   public static final int TkNewValor = 56;
@@ -132,7 +134,9 @@ public class sym {
   "TkTituloX",
   "TkTituloY",
   "TkTitulo",
-  "TkValores"
+  "TkValores",
+  "TkTrue",
+  "TkFalse"
   };
 }
 

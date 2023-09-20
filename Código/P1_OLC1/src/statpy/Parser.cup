@@ -51,7 +51,7 @@ terminal String TkCONSOLE_R,TkWRITE_R;
 terminal String TkFOR_R, TkDO_R,TkWHILE_R;
 terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewValor;
 terminal String TkEjeX,TkTituloX,TkTituloY,TkTitulo,TkValores;
-
+terminal STring TkTrue,TkFalse;
 
 //------> Declaración de no terminales
 non terminal inicio;
@@ -61,14 +61,14 @@ non terminal LinkedList listainstrTraduccion;
 non terminal listainstrGraficas;
 non terminal expresionTraduccion, expresionGraficas;
 non terminal instruccionIF, instruccionConsoleWr, instruccionWhile;
-
+non terminal expresionRelacional;
 
 
 //------> PRECEDENCIA
-//precedence left TkOR;
-//precedence left TkAND;
-//precedence right TkNOT;
-//precedente left TkIGUALIGUAL,TkIDISTINTO,TkMENORQUE,TkMENORIGUAL,TkMAYORQUE,TkMAYORIGUAL; 
+precedence left TkOR;
+precedence left TkAND;
+precedence right TkNOT;
+precedence left TkIGUALIGUAL,TkIDISTINTO,TkMENORQUE,TkMENORIGUAL,TkMAYORQUE,TkMAYORIGUAL; 
 precedence left TkRESTA,TkSUMA;
 precedence left TkMULTIPLICACION, TkDIVISION;
 precedence right TkRESTA;
@@ -118,7 +118,18 @@ expresionTraduccion ::= expresionTraduccion: a  TkSUMA  expresionTraduccion:b {:
                     |expresionTraduccion: a  TkRESTA  expresionTraduccion:b {: RESULT = a.toString()+"-"+b.toString();:}
                     |expresionTraduccion: a  TkMULTIPLICACION expresionTraduccion:b {:RESULT = a.toString()+"*"+b.toString() ;:}
                     |expresionTraduccion: a  TkDIVISION   expresionTraduccion:b {:RESULT = a.toString()+"/"+b.toString() ;:}
+                    |TkRESTA expresionTraduccion:b {:RESULT = "-"+b.toString() ;:}
                     |TkENTERO: val {:RESULT = val;:}
+                    |TkDECIMAL: val {:RESULT = val;:}
+                    |TkErChar: val {:RESULT = val;:}
+                    |TkCADENA: val {:RESULT = val;:}
+                    |expresionTraduccion:b  expresionRelacional:a  expresionTraduccion:c  {: RESULT = b.toString()+a.toString()+c.toString();:}
+                    |TkNOT expresionTraduccion:a {:RESULT  = " not "+a.toString();:}
+                    |expresionTraduccion:a TkAND expresionTraduccion:b {:RESULT  = a.toString()+" and "+b.toString();:}
+                    |expresionTraduccion:a TkOR expresionTraduccion:b {:RESULT  = a.toString()+" or "+b.toString();:}
+                    |TkTrue {:RESULT = " True ";:}
+                    |TkFalse {:RESULT = " False ";:}
+
 ;
 
 
@@ -142,6 +153,17 @@ instruccionIF ::=  TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISC
                             RESULT = lista;
                         :}
 ;
+
+expresionRelacional ::= TkMAYORQUE: val {:RESULT = val;:}
+                    | TkMENORQUE: val {:RESULT = val;:}
+                    | TkMAYORIGUAL: val {:RESULT = val;:}
+                    | TkMENORIGUAL: val {:RESULT = val;:}
+                    | TkIGUALIGUAL: val {:RESULT = val;:}
+                    | TkIDISTINTO: val {:RESULT = val;:}
+; 
+
+
+
 
 
 

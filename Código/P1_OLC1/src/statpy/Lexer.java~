@@ -113,16 +113,17 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\1\16\1\17\1\20\1\21\1\22\15\1\1\23\1\24"+
     "\1\25\1\1\1\26\1\27\1\0\1\30\1\31\1\0"+
     "\1\32\1\0\1\33\1\0\1\34\1\35\1\36\6\0"+
-    "\1\37\4\0\1\40\11\0\1\41\1\42\1\43\1\0"+
-    "\1\44\12\0\1\45\1\0\1\46\10\0\1\47\1\50"+
-    "\1\0\1\51\1\52\5\0\1\53\1\54\1\0\1\55"+
-    "\4\0\1\56\2\0\1\57\12\0\1\60\1\61\4\0"+
-    "\1\62\2\0\1\63\1\64\2\0\1\65\1\66\3\0"+
-    "\1\67\1\70\1\71\4\0\1\72\4\0\1\73\2\0"+
-    "\1\74\5\0\1\75\1\0\1\76";
+    "\1\37\5\0\1\40\12\0\1\41\1\42\1\43\1\0"+
+    "\1\44\13\0\1\45\1\0\1\46\11\0\1\47\1\50"+
+    "\1\0\1\51\1\52\5\0\1\53\1\54\2\0\1\55"+
+    "\3\0\1\56\1\0\1\57\2\0\1\60\5\0\1\61"+
+    "\5\0\1\62\1\63\4\0\1\64\2\0\1\65\1\66"+
+    "\2\0\1\67\1\70\3\0\1\71\1\72\1\73\4\0"+
+    "\1\74\4\0\1\75\2\0\1\76\5\0\1\77\1\0"+
+    "\1\100";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[173];
+    int [] result = new int[180];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -154,24 +155,25 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\0\u04d0\0\u0508\0\u0540\0\u0578\0\70\0\70\0\u05b0\0\70"+
     "\0\70\0\250\0\70\0\70\0\u05e8\0\70\0\u0620\0\u0658"+
     "\0\u0690\0\70\0\70\0\70\0\u06c8\0\u0700\0\u0738\0\u0770"+
-    "\0\u07a8\0\u07e0\0\u0818\0\u0850\0\u0888\0\u08c0\0\u08f8\0\70"+
-    "\0\u0930\0\u0968\0\u09a0\0\u09d8\0\u0a10\0\u0a48\0\u0a80\0\u0ab8"+
-    "\0\u0af0\0\70\0\70\0\70\0\u0b28\0\u0690\0\u0b60\0\u0b98"+
+    "\0\u07a8\0\u07e0\0\u0818\0\u0850\0\u0888\0\u08c0\0\u08f8\0\u0930"+
+    "\0\70\0\u0968\0\u09a0\0\u09d8\0\u0a10\0\u0a48\0\u0a80\0\u0ab8"+
+    "\0\u0af0\0\u0b28\0\u0b60\0\70\0\70\0\70\0\u0b98\0\u0690"+
     "\0\u0bd0\0\u0c08\0\u0c40\0\u0c78\0\u0cb0\0\u0ce8\0\u0d20\0\u0d58"+
-    "\0\70\0\u0d90\0\70\0\u0dc8\0\u0e00\0\u0e38\0\u0e70\0\u0ea8"+
-    "\0\u0ee0\0\u0f18\0\u0f50\0\70\0\70\0\u0f88\0\70\0\70"+
-    "\0\u0fc0\0\u0ff8\0\u1030\0\u1068\0\u10a0\0\70\0\70\0\u10d8"+
-    "\0\70\0\u1110\0\u1148\0\u1180\0\u11b8\0\70\0\u11f0\0\u1228"+
-    "\0\70\0\u1260\0\u1298\0\u12d0\0\u1308\0\u1340\0\u1378\0\u13b0"+
-    "\0\u13e8\0\u1420\0\u1458\0\70\0\70\0\u1490\0\u14c8\0\u1500"+
-    "\0\u1538\0\70\0\u1570\0\u15a8\0\70\0\u15e0\0\u1618\0\u1650"+
-    "\0\70\0\70\0\u1688\0\u16c0\0\u16f8\0\70\0\70\0\70"+
-    "\0\u1730\0\u1768\0\u17a0\0\u17d8\0\70\0\u1810\0\u1848\0\u1880"+
-    "\0\u18b8\0\70\0\u18f0\0\u1928\0\70\0\u1960\0\u1998\0\u19d0"+
-    "\0\u1a08\0\u1a40\0\70\0\u1a78\0\70";
+    "\0\u0d90\0\u0dc8\0\u0e00\0\70\0\u0e38\0\70\0\u0e70\0\u0ea8"+
+    "\0\u0ee0\0\u0f18\0\u0f50\0\u0f88\0\u0fc0\0\u0ff8\0\u1030\0\70"+
+    "\0\70\0\u1068\0\70\0\70\0\u10a0\0\u10d8\0\u1110\0\u1148"+
+    "\0\u1180\0\70\0\70\0\u11b8\0\u11f0\0\70\0\u1228\0\u1260"+
+    "\0\u1298\0\70\0\u12d0\0\70\0\u1308\0\u1340\0\70\0\u1378"+
+    "\0\u13b0\0\u13e8\0\u1420\0\u1458\0\70\0\u1490\0\u14c8\0\u1500"+
+    "\0\u1538\0\u1570\0\70\0\70\0\u15a8\0\u15e0\0\u1618\0\u1650"+
+    "\0\70\0\u1688\0\u16c0\0\70\0\u16f8\0\u1730\0\u1768\0\70"+
+    "\0\70\0\u17a0\0\u17d8\0\u1810\0\70\0\70\0\70\0\u1848"+
+    "\0\u1880\0\u18b8\0\u18f0\0\70\0\u1928\0\u1960\0\u1998\0\u19d0"+
+    "\0\70\0\u1a08\0\u1a40\0\70\0\u1a78\0\u1ab0\0\u1ae8\0\u1b20"+
+    "\0\u1b58\0\70\0\u1b90\0\70";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[173];
+    int [] result = new int[180];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -205,44 +207,46 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\1\57\4\0\1\60\66\0\1\61\1\0\1\21\73\0"+
     "\1\62\67\0\1\63\67\0\1\64\107\0\1\65\2\0"+
     "\1\66\46\0\1\67\6\0\1\70\6\0\1\71\55\0"+
-    "\1\72\11\0\1\73\62\0\1\74\1\0\1\75\72\0"+
-    "\1\76\72\0\1\77\53\0\1\100\7\0\1\101\52\0"+
-    "\1\102\73\0\1\103\106\0\1\104\54\0\1\105\25\0"+
-    "\1\105\31\0\1\106\15\0\1\107\60\0\1\110\11\0"+
-    "\1\111\100\0\1\112\71\0\1\113\14\0\1\114\57\0"+
-    "\13\57\1\115\54\57\2\60\1\0\65\60\21\0\1\116"+
-    "\113\0\1\117\55\0\1\120\105\0\1\121\14\0\1\121"+
-    "\30\0\1\122\103\0\1\123\1\124\57\0\1\125\106\0"+
-    "\1\126\47\0\1\127\105\0\1\130\14\0\1\130\51\0"+
-    "\1\131\46\0\1\132\112\0\1\133\54\0\1\134\25\0"+
-    "\1\134\57\0\1\135\62\0\1\136\71\0\1\137\57\0"+
-    "\1\140\64\0\1\141\25\0\1\141\41\0\1\142\25\0"+
-    "\1\142\41\0\1\143\25\0\1\143\2\0\13\57\1\115"+
-    "\4\57\1\144\47\57\42\0\1\145\54\0\1\146\73\0"+
-    "\1\147\104\0\1\150\52\0\1\151\105\0\1\152\14\0"+
-    "\1\152\30\0\1\153\7\0\1\154\25\0\1\154\32\0"+
-    "\1\155\115\0\1\156\44\0\1\157\70\0\1\160\77\0"+
-    "\1\161\77\0\1\162\52\0\1\163\25\0\1\163\55\0"+
-    "\1\164\61\0\1\165\54\0\1\166\77\0\1\167\77\0"+
-    "\1\170\56\0\1\171\25\0\1\171\44\0\1\172\70\0"+
-    "\1\173\75\0\1\174\60\0\1\175\65\0\1\176\64\0"+
-    "\1\177\25\0\1\177\31\0\1\200\104\0\1\201\65\0"+
-    "\1\202\75\0\1\203\52\0\1\204\67\0\1\205\106\0"+
-    "\1\206\57\0\1\207\67\0\1\210\64\0\1\211\25\0"+
-    "\1\211\35\0\1\212\65\0\1\213\100\0\1\214\62\0"+
-    "\1\215\77\0\1\216\55\0\1\217\63\0\1\220\73\0"+
-    "\1\221\106\0\1\222\65\0\1\223\46\0\1\224\105\0"+
-    "\1\225\100\0\1\226\1\227\61\0\1\230\14\0\1\230"+
-    "\51\0\1\231\54\0\1\232\62\0\1\233\15\0\1\234"+
-    "\71\0\1\235\56\0\1\236\25\0\1\236\44\0\1\237"+
-    "\54\0\1\240\77\0\1\241\25\0\1\241\47\0\1\242"+
-    "\67\0\1\243\72\0\1\244\52\0\1\245\64\0\1\246"+
-    "\107\0\1\247\46\0\1\250\67\0\1\251\102\0\1\252"+
-    "\76\0\1\253\14\0\1\253\34\0\1\254\105\0\1\255"+
-    "\14\0\1\255\1\0";
+    "\1\72\11\0\1\73\62\0\1\74\1\0\1\75\54\0"+
+    "\1\76\15\0\1\77\72\0\1\100\53\0\1\101\7\0"+
+    "\1\102\52\0\1\103\73\0\1\104\106\0\1\105\54\0"+
+    "\1\106\10\0\1\107\14\0\1\106\31\0\1\110\15\0"+
+    "\1\111\60\0\1\112\11\0\1\113\100\0\1\114\71\0"+
+    "\1\115\14\0\1\116\57\0\13\57\1\117\54\57\2\60"+
+    "\1\0\65\60\21\0\1\120\113\0\1\121\55\0\1\122"+
+    "\105\0\1\123\14\0\1\123\30\0\1\124\103\0\1\125"+
+    "\1\126\57\0\1\127\106\0\1\130\47\0\1\131\105\0"+
+    "\1\132\14\0\1\132\43\0\1\133\75\0\1\134\46\0"+
+    "\1\135\112\0\1\136\54\0\1\137\25\0\1\137\57\0"+
+    "\1\140\62\0\1\141\71\0\1\142\70\0\1\143\56\0"+
+    "\1\144\64\0\1\145\25\0\1\145\41\0\1\146\25\0"+
+    "\1\146\41\0\1\147\25\0\1\147\2\0\13\57\1\117"+
+    "\4\57\1\150\47\57\42\0\1\151\54\0\1\152\73\0"+
+    "\1\153\104\0\1\154\52\0\1\155\105\0\1\156\14\0"+
+    "\1\156\30\0\1\157\7\0\1\160\25\0\1\160\32\0"+
+    "\1\161\115\0\1\162\44\0\1\163\105\0\1\164\14\0"+
+    "\1\164\35\0\1\165\77\0\1\166\77\0\1\167\52\0"+
+    "\1\170\25\0\1\170\55\0\1\171\47\0\1\172\101\0"+
+    "\1\173\54\0\1\174\77\0\1\175\77\0\1\176\56\0"+
+    "\1\177\25\0\1\177\44\0\1\200\70\0\1\201\75\0"+
+    "\1\202\60\0\1\203\65\0\1\204\60\0\1\205\73\0"+
+    "\1\206\25\0\1\206\31\0\1\207\104\0\1\210\65\0"+
+    "\1\211\75\0\1\212\52\0\1\213\67\0\1\214\106\0"+
+    "\1\215\57\0\1\216\67\0\1\217\64\0\1\220\25\0"+
+    "\1\220\35\0\1\221\65\0\1\222\100\0\1\223\62\0"+
+    "\1\224\77\0\1\225\55\0\1\226\63\0\1\227\73\0"+
+    "\1\230\106\0\1\231\65\0\1\232\46\0\1\233\105\0"+
+    "\1\234\100\0\1\235\1\236\61\0\1\237\14\0\1\237"+
+    "\51\0\1\240\54\0\1\241\62\0\1\242\15\0\1\243"+
+    "\71\0\1\244\56\0\1\245\25\0\1\245\44\0\1\246"+
+    "\54\0\1\247\77\0\1\250\25\0\1\250\47\0\1\251"+
+    "\67\0\1\252\72\0\1\253\52\0\1\254\64\0\1\255"+
+    "\107\0\1\256\46\0\1\257\67\0\1\260\102\0\1\261"+
+    "\76\0\1\262\14\0\1\262\34\0\1\263\105\0\1\264"+
+    "\14\0\1\264\1\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[6832];
+    int [] result = new int[7112];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -288,15 +292,15 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\1\0\2\11\2\1\1\11\2\1\3\11\1\1\3\11"+
     "\2\1\2\11\21\1\2\11\1\1\2\11\1\0\2\11"+
     "\1\0\1\11\1\0\1\1\1\0\3\11\6\0\1\1"+
-    "\4\0\1\11\11\0\3\11\1\0\1\1\12\0\1\11"+
-    "\1\0\1\11\10\0\2\11\1\0\2\11\5\0\2\11"+
-    "\1\0\1\11\4\0\1\11\2\0\1\11\12\0\2\11"+
-    "\4\0\1\11\2\0\1\11\1\1\2\0\2\11\3\0"+
-    "\3\11\4\0\1\11\4\0\1\11\2\0\1\11\5\0"+
-    "\1\11\1\0\1\11";
+    "\5\0\1\11\12\0\3\11\1\0\1\1\13\0\1\11"+
+    "\1\0\1\11\11\0\2\11\1\0\2\11\5\0\2\11"+
+    "\2\0\1\11\3\0\1\11\1\0\1\11\2\0\1\11"+
+    "\5\0\1\11\5\0\2\11\4\0\1\11\2\0\1\11"+
+    "\1\1\2\0\2\11\3\0\3\11\4\0\1\11\4\0"+
+    "\1\11\2\0\1\11\5\0\1\11\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[173];
+    int [] result = new int[180];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -803,312 +807,322 @@ public class Lexer implements java_cup.runtime.Scanner {
             { Erroor errorsito = new Erroor("Lexico", yytext() ,"No es válido en este lenguaje", yyline, yycolumn);Funcion.ErrorList.add(errorsito);System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn);
             }
           // fall through
-          case 63: break;
+          case 65: break;
           case 2:
             { /* Espacios en blanco se ignoran */
             }
           // fall through
-          case 64: break;
+          case 66: break;
           case 3:
             { Token NuevoToken = new Token("TkNOT",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkNOT> Tk: " + yytext());return new Symbol(sym.TkNOT, yycolumn, yyline, yytext());
             }
           // fall through
-          case 65: break;
+          case 67: break;
           case 4:
             { Token NuevoToken = new Token("TkSignoDolar",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkSignoDolar> Tk: " + yytext());return new Symbol(sym.TkSignoDolar, yycolumn, yyline, yytext());
             }
           // fall through
-          case 66: break;
+          case 68: break;
           case 5:
             { Token NuevoToken = new Token("TkPARENTESISAbre",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPARENTESISAbre> Tk: " + yytext());return new Symbol(sym.TkPARENTESISAbre, yycolumn, yyline, yytext());
             }
           // fall through
-          case 67: break;
+          case 69: break;
           case 6:
             { Token NuevoToken = new Token("TkPARENTESISCierra",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPARENTESISCierra> Tk: " + yytext());return new Symbol(sym.TkPARENTESISCierra, yycolumn, yyline, yytext());
             }
           // fall through
-          case 68: break;
+          case 70: break;
           case 7:
             { Token NuevoToken = new Token("TkMULTIPLICACION",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkMULTIPLICACION> Tk: " + yytext());return new Symbol(sym.TkMULTIPLICACION, yycolumn, yyline, yytext());
             }
           // fall through
-          case 69: break;
+          case 71: break;
           case 8:
             { Token NuevoToken = new Token("TkSUMA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkSUMA> Tk: " + yytext());return new Symbol(sym.TkSUMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 70: break;
+          case 72: break;
           case 9:
             { Token NuevoToken = new Token("TkCOMA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCOMA> Tk: " + yytext());return new Symbol(sym.TkCOMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 71: break;
+          case 73: break;
           case 10:
             { Token NuevoToken = new Token("TkRESTA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkRESTA> Tk: " + yytext());return new Symbol(sym.TkRESTA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 72: break;
+          case 74: break;
           case 11:
             { Token NuevoToken = new Token("TkPUNTO",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPUNTO> Tk: " + yytext());return new Symbol(sym.TkPUNTO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 73: break;
+          case 75: break;
           case 12:
             { Token NuevoToken = new Token("TkDIVISION",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDIVISION> Tk: " + yytext());return new Symbol(sym.TkDIVISION, yycolumn, yyline, yytext());
             }
           // fall through
-          case 74: break;
+          case 76: break;
           case 13:
             { Token NuevoToken = new Token("TkENTERO",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkENTERO> Tk: " + yytext());return new Symbol(sym.TkENTERO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 75: break;
+          case 77: break;
           case 14:
             { Token NuevoToken = new Token("TkDOSPUNTOS",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDOSPUNTOS> Tk: " + yytext());return new Symbol(sym.TkDOSPUNTOS, yycolumn, yyline, yytext());
             }
           // fall through
-          case 76: break;
+          case 78: break;
           case 15:
             { Token NuevoToken = new Token("TkPUNTOYCOMA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPUNTOYCOMA> Tk: " + yytext());return new Symbol(sym.TkPUNTOYCOMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 77: break;
+          case 79: break;
           case 16:
             { Token NuevoToken = new Token("TkMENORQUE",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkMENORQUE> Tk: " + yytext());return new Symbol(sym.TkMENORQUE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 78: break;
+          case 80: break;
           case 17:
             { Token NuevoToken = new Token("TkIGUAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIGUAL> Tk: " + yytext());return new Symbol(sym.TkIGUAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 79: break;
+          case 81: break;
           case 18:
             { Token NuevoToken = new Token("TkMAYORQUE",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);  System.out.println("Se acepto el Token  <TkMAYORQUE> Tk: " + yytext());return new Symbol(sym.TkMAYORQUE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 80: break;
+          case 82: break;
           case 19:
             { Token NuevoToken = new Token("TkCORCHETEAbre",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCORCHETEAbre> Tk: " + yytext());return new Symbol(sym.TkCORCHETEAbre, yycolumn, yyline, yytext());
             }
           // fall through
-          case 81: break;
+          case 83: break;
           case 20:
             { Token NuevoToken = new Token("TkCORCHETECierra",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCORCHETECierra> Tk: " + yytext());return new Symbol(sym.TkCORCHETECierra, yycolumn, yyline, yytext());
             }
           // fall through
-          case 82: break;
+          case 84: break;
           case 21:
             { Token NuevoToken = new Token("TkLLAVEA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkLLAVEA> Tk: " + yytext());return new Symbol(sym.TkLLAVEA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 83: break;
+          case 85: break;
           case 22:
             { Token NuevoToken = new Token("TkLLAVEC",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkLLAVEC> Tk: " + yytext());return new Symbol(sym.TkLLAVEC, yycolumn, yyline, yytext());
             }
           // fall through
-          case 84: break;
+          case 86: break;
           case 23:
             { Token NuevoToken = new Token("TkIDISTINTO",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIDISTINTO> Tk: " + yytext());return new Symbol(sym.TkIDISTINTO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 85: break;
+          case 87: break;
           case 24:
             { Token NuevoToken = new Token("TkCADENA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCADENA> Tk: " + yytext());return new Symbol(sym.TkCADENA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 86: break;
+          case 88: break;
           case 25:
             { Token NuevoToken = new Token("TkAND",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkAND> Tk: " + yytext());return new Symbol(sym.TkAND, yycolumn, yyline, yytext());
             }
           // fall through
-          case 87: break;
+          case 89: break;
           case 26:
             { Token NuevoToken = new Token("TkIncremento",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIncremento> Tk: " + yytext());return new Symbol(sym.TkIncremento, yycolumn, yyline, yytext());
             }
           // fall through
-          case 88: break;
+          case 90: break;
           case 27:
             { Token NuevoToken = new Token("TkCOMENTnORMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCOMENTnORMAL> Tk: " + yytext());return new Symbol(sym.TkCOMENTnORMAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 89: break;
+          case 91: break;
           case 28:
             { Token NuevoToken = new Token("TkMENORIGUAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkMENORIGUAL> Tk: " + yytext());return new Symbol(sym.TkMENORIGUAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 90: break;
+          case 92: break;
           case 29:
             { Token NuevoToken = new Token("TkIGUALIGUAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIGUALIGUAL> Tk: " + yytext());return new Symbol(sym.TkIGUALIGUAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 91: break;
+          case 93: break;
           case 30:
             { Token NuevoToken = new Token("TkMAYORIGUAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkMAYORIGUAL> Tk: " + yytext());return new Symbol(sym.TkMAYORIGUAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 92: break;
+          case 94: break;
           case 31:
             { Token NuevoToken = new Token("TkDO_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDO_R> Tk: " + yytext());return new Symbol(sym.TkDO_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 93: break;
+          case 95: break;
           case 32:
             { Token NuevoToken = new Token("TkIF_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIF_R> Tk: "  + yytext());return new Symbol(sym.TkIF_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 94: break;
+          case 96: break;
           case 33:
             { Token NuevoToken = new Token("TkCorchetesArreglo",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCorchetesArreglo> Tk: " + yytext());return new Symbol(sym.TkCorchetesArreglo, yycolumn, yyline, yytext());
             }
           // fall through
-          case 95: break;
+          case 97: break;
           case 34:
             { Token NuevoToken = new Token("TkOR",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkOR> Tk: " + yytext());return new Symbol(sym.TkOR, yycolumn, yyline, yytext());
             }
           // fall through
-          case 96: break;
+          case 98: break;
           case 35:
             { Token NuevoToken = new Token("TkErChar",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkErChar> Tk: " + yytext());return new Symbol(sym.TkErChar, yycolumn, yyline, yytext());
             }
           // fall through
-          case 97: break;
+          case 99: break;
           case 36:
             { Token NuevoToken = new Token("TkDECIMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDECIMAL> Tk: " + yytext());return new Symbol(sym.TkDECIMAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 98: break;
+          case 100: break;
           case 37:
             { Token NuevoToken = new Token("TkFOR_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkFOR_R> Tk: "  + yytext());return new Symbol(sym.TkFOR_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 99: break;
+          case 101: break;
           case 38:
             { Token NuevoToken = new Token("TkINT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkINT_R> Tk: "  + yytext());return new Symbol(sym.TkINT_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 100: break;
+          case 102: break;
           case 39:
             { Token NuevoToken = new Token("TkCOMENTmULTI",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCOMENTmULTI> Tk: " + yytext());return new Symbol(sym.TkCOMENTmULTI, yycolumn, yyline, yytext());
             }
           // fall through
-          case 101: break;
+          case 103: break;
           case 40:
             { Token NuevoToken = new Token("TkBOOL_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkBOOL_R> Tk: "  +yytext());return new Symbol(sym.TkBOOL_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 102: break;
+          case 104: break;
           case 41:
             { Token NuevoToken = new Token("TkCASE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCASE_R> Tk: "  + yytext());return new Symbol(sym.TkCASE_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 103: break;
+          case 105: break;
           case 42:
             { Token NuevoToken = new Token("TkCHAR_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCHAR_R> Tk: "  + yytext());return new Symbol(sym.TkCHAR_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 104: break;
+          case 106: break;
           case 43:
             { Token NuevoToken = new Token("TkEjeX",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkEjeX> Tk: "  + yytext());return new Symbol(sym.TkEjeX, yycolumn, yyline, yytext());
             }
           // fall through
-          case 105: break;
+          case 107: break;
           case 44:
             { Token NuevoToken = new Token("TkELSE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkELSE_R> Tk: " + yytext());return new Symbol(sym.TkELSE_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 106: break;
+          case 108: break;
           case 45:
             { Token NuevoToken = new Token("TkMAIN_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkMAIN_R> Tk: "  + yytext());return new Symbol(sym.TkMAIN_R, yycolumn, yyline, yytext());
             }
           // fall through
-          case 107: break;
-          case 46:
-            { Token NuevoToken = new Token("TkVOID_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkVOID_R> Tk: "  + yytext());return new Symbol(sym.TkVOID_R, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 108: break;
-          case 47:
-            { Token NuevoToken = new Token("TkBRAKE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkBRAKE_R> Tk: "  + yytext());return new Symbol(sym.TkBRAKE_R, yycolumn, yyline, yytext());
-            }
-          // fall through
           case 109: break;
-          case 48:
-            { Token NuevoToken = new Token("TkWHILE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkWHILE_R> Tk: "  + yytext());return new Symbol(sym.TkWHILE_R, yycolumn, yyline, yytext());
+          case 46:
+            { Token NuevoToken = new Token("TkTrue",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTrue> Tk: "  + yytext());return new Symbol(sym.TkTrue, yycolumn, yyline, yytext());
             }
           // fall through
           case 110: break;
-          case 49:
-            { Token NuevoToken = new Token("TkWRITE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkWRITE_R> Tk: " + yytext());return new Symbol(sym.TkWRITE_R, yycolumn, yyline, yytext());
+          case 47:
+            { Token NuevoToken = new Token("TkVOID_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkVOID_R> Tk: "  + yytext());return new Symbol(sym.TkVOID_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 111: break;
-          case 50:
-            { Token NuevoToken = new Token("TkINT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkINT_R> Tk: " + yytext());return new Symbol(sym.TkINT_R, yycolumn, yyline, yytext());
+          case 48:
+            { Token NuevoToken = new Token("TkBRAKE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkBRAKE_R> Tk: "  + yytext());return new Symbol(sym.TkBRAKE_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 112: break;
-          case 51:
-            { Token NuevoToken = new Token("TkSTRING_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkSTRING_R> Tk: "  + yytext());return new Symbol(sym.TkSTRING_R, yycolumn, yyline, yytext());
+          case 49:
+            { Token NuevoToken = new Token("TkFalse",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkFalse> Tk: "  + yytext());return new Symbol(sym.TkFalse, yycolumn, yyline, yytext());
             }
           // fall through
           case 113: break;
-          case 52:
-            { Token NuevoToken = new Token("TkTitulo",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTitulo> Tk: "  + yytext());return new Symbol(sym.TkTitulo, yycolumn, yyline, yytext());
+          case 50:
+            { Token NuevoToken = new Token("TkWHILE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkWHILE_R> Tk: "  + yytext());return new Symbol(sym.TkWHILE_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 114: break;
-          case 53:
-            { Token NuevoToken = new Token("TkCONSOLE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCONSOLE_R> Tk: " + yytext());return new Symbol(sym.TkCONSOLE_R, yycolumn, yyline, yytext());
+          case 51:
+            { Token NuevoToken = new Token("TkWRITE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkWRITE_R> Tk: " + yytext());return new Symbol(sym.TkWRITE_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 115: break;
-          case 54:
-            { Token NuevoToken = new Token("TkDEFAULT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDEFAULT_R> Tk: " + yytext());return new Symbol(sym.TkDEFAULT_R, yycolumn, yyline, yytext());
+          case 52:
+            { Token NuevoToken = new Token("TkINT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkINT_R> Tk: " + yytext());return new Symbol(sym.TkINT_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 116: break;
-          case 55:
-            { Token NuevoToken = new Token("TkTituloX",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTituloX> Tk: "  + yytext());return new Symbol(sym.TkTituloX, yycolumn, yyline, yytext());
+          case 53:
+            { Token NuevoToken = new Token("TkSTRING_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkSTRING_R> Tk: "  + yytext());return new Symbol(sym.TkSTRING_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 117: break;
-          case 56:
-            { Token NuevoToken = new Token("TkTituloY",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTituloY> Tk: "  + yytext());return new Symbol(sym.TkTituloY, yycolumn, yyline, yytext());
+          case 54:
+            { Token NuevoToken = new Token("TkTitulo",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTitulo> Tk: "  + yytext());return new Symbol(sym.TkTitulo, yycolumn, yyline, yytext());
             }
           // fall through
           case 118: break;
-          case 57:
-            { Token NuevoToken = new Token("TkValores",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkValores> Tk: "  + yytext());return new Symbol(sym.TkValores, yycolumn, yyline, yytext());
+          case 55:
+            { Token NuevoToken = new Token("TkCONSOLE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCONSOLE_R> Tk: " + yytext());return new Symbol(sym.TkCONSOLE_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 119: break;
-          case 58:
-            { Token NuevoToken = new Token("TkNewValor",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkNewValor> Tk: "  + yytext());return new Symbol(sym.TkNewValor, yycolumn, yyline, yytext());
+          case 56:
+            { Token NuevoToken = new Token("TkDEFAULT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDEFAULT_R> Tk: " + yytext());return new Symbol(sym.TkDEFAULT_R, yycolumn, yyline, yytext());
             }
           // fall through
           case 120: break;
-          case 59:
-            { 
+          case 57:
+            { Token NuevoToken = new Token("TkTituloX",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTituloX> Tk: "  + yytext());return new Symbol(sym.TkTituloX, yycolumn, yyline, yytext());
             }
           // fall through
           case 121: break;
-          case 60:
-            { Token NuevoToken = new Token("TkGRAFICA_PIE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkGRAFICA_PIE_R> Tk: "  + yytext());return new Symbol(sym.TkGRAFICA_PIE_R, yycolumn, yyline, yytext());
+          case 58:
+            { Token NuevoToken = new Token("TkTituloY",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTituloY> Tk: "  + yytext());return new Symbol(sym.TkTituloY, yycolumn, yyline, yytext());
             }
           // fall through
           case 122: break;
-          case 61:
-            { Token NuevoToken = new Token("TkGRAFICA_BARRAS_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkGRAFICA_BARRAS_R> Tk: "  + yytext());return new Symbol(sym.TkGRAFICA_BARRAS_R, yycolumn, yyline, yytext());
+          case 59:
+            { Token NuevoToken = new Token("TkValores",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkValores> Tk: "  + yytext());return new Symbol(sym.TkValores, yycolumn, yyline, yytext());
             }
           // fall through
           case 123: break;
-          case 62:
-            { Token NuevoToken = new Token("TkDEFINIR_GLOBALES_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDEFINIR_GLOBALES_R> Tk: " + yytext());return new Symbol(sym.TkDEFINIR_GLOBALES_R, yycolumn, yyline, yytext());
+          case 60:
+            { Token NuevoToken = new Token("TkNewValor",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkNewValor> Tk: "  + yytext());return new Symbol(sym.TkNewValor, yycolumn, yyline, yytext());
             }
           // fall through
           case 124: break;
+          case 61:
+            { 
+            }
+          // fall through
+          case 125: break;
+          case 62:
+            { Token NuevoToken = new Token("TkGRAFICA_PIE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkGRAFICA_PIE_R> Tk: "  + yytext());return new Symbol(sym.TkGRAFICA_PIE_R, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 126: break;
+          case 63:
+            { Token NuevoToken = new Token("TkGRAFICA_BARRAS_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkGRAFICA_BARRAS_R> Tk: "  + yytext());return new Symbol(sym.TkGRAFICA_BARRAS_R, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 127: break;
+          case 64:
+            { Token NuevoToken = new Token("TkDEFINIR_GLOBALES_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDEFINIR_GLOBALES_R> Tk: " + yytext());return new Symbol(sym.TkDEFINIR_GLOBALES_R, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 128: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
