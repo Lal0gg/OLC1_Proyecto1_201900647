@@ -38,7 +38,7 @@ action code
 
 
 //------> Declaración de terminales
-terminal String TkENTERO, TkDECIMAL ,TkCOMENTmULTI, TkCOMENTnORMAL,TkCADENA,TkErChar;
+terminal String TkENTERO, TkDECIMAL ,TkCADENA,TkErChar;
 terminal String TkSUMA,R_MOSTRAR,TkMULTIPLICACION,TkRESTA,TkDIVISION,TkIGUAL;
 terminal String TkPUNTOYCOMA,TkDOSPUNTOS,TkPUNTO,TkCOMA;
 terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra,TkCORCHETEAbre,TkCORCHETECierra,TkCorchetesArreglo;
@@ -54,6 +54,7 @@ terminal String TkEjeX,TkTituloX,TkTituloY,TkTitulo,TkValores;
 terminal String TkTrue,TkFalse;
 terminal String TkElseIf;
 terminal String TkSWITCH_R;
+terminal String TkIdentificador;
 
 //------> Declaración de no terminales
 non terminal inicio;
@@ -65,6 +66,11 @@ non terminal expresionTraduccion, expresionGraficas;
 non terminal instruccionIF, instruccionConsoleWr, instruccionWhile;
 non terminal expresionRelacional;
 non terminal instruccionDowhile;
+non terminal instruccionFor;
+non terminal declaracionvariable;
+non terminal tipoDato;
+non terminal asignacionvariable;
+
 //------> PRECEDENCIA
 precedence left TkOR;
 precedence left TkAND;
@@ -114,6 +120,8 @@ instruccionTraduccion ::= instruccionConsoleWr: val {:RESULT = val;:}
                          | instruccionIF: val {:RESULT = val;:}
                          | instruccionWhile: val {:RESULT = val;:}
                          | instruccionDowhile: val {:RESULT = val;:}
+                         | declaracionvariable: val {:RESULT = val;:}
+                         | asignacionvariable: val {:RESULT = val;:}
                          | error TkPUNTOYCOMA
 ;
 
@@ -134,6 +142,9 @@ expresionTraduccion ::= expresionTraduccion: a  TkSUMA  expresionTraduccion:b {:
                     |TkTrue {:RESULT = " True ";:}
                     |TkFalse {:RESULT = " False ";:}
                     |TkCADENA: a  TkSUMA  expresionTraduccion:b {:RESULT = a.toString()+" , "+b.toString();:}   
+                    |TkIdentificador : val {:RESULT = val;:}
+                    |TkIdentificador : a  TkSUMA expresionTraduccion:b {:RESULT = a.toString()+" + "+b.toString();:}   
+                    
 
 ;
 
@@ -251,3 +262,40 @@ instruccionDowhile::=  TkDO_R TkLLAVEA listainstrTraduccion:listainst  TkLLAVEC 
                         RESULT = lista;
                     :}
 ;
+
+
+instruccionFor::=  TkFOR_R  TkPARENTESISAbre  TkPARENTESISCierra TkLLAVEA  listainstrTraduccion:listainstr TkLLAVEC
+;
+
+
+declaracionvariable ::= tipoDato TkIdentificador:b TkPUNTOYCOMA 
+                    {:
+                        LinkedList<String> lista = new LinkedList<>();
+                        lista.add(b.toString()+" = None");
+                        RESULT = lista;
+                    :}
+                  | tipoDato TkIdentificador:b TkIGUAL expresionTraduccion:a TkPUNTOYCOMA 
+                    {:
+                        LinkedList<String> lista = new LinkedList<>();
+                        lista.add(b.toString()+" = "+a.toString());
+                        RESULT = lista;
+                    :}
+;
+
+
+tipoDato::=  TkINT_R: val {:RESULT = val;:} 
+            |TkDOUBLE_R: val {:RESULT = val;:}
+            |TkCHAR_R: val {:RESULT = val;:}
+            |TkBOOL_R: val {:RESULT = val;:}
+            |TkSTRING_R: val {:RESULT = val;:}
+;
+
+
+asignacionvariable ::= TkIdentificador: a TkIGUAL  expresionTraduccion:b  TkPUNTOYCOMA 
+                        {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add(a.toString() + "=" + b.toString());
+                            RESULT = lista;
+                        :}
+;
+
