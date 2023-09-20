@@ -129,6 +129,7 @@ expresionTraduccion ::= expresionTraduccion: a  TkSUMA  expresionTraduccion:b {:
                     |expresionTraduccion:a TkOR expresionTraduccion:b {:RESULT  = a.toString()+" or "+b.toString();:}
                     |TkTrue {:RESULT = " True ";:}
                     |TkFalse {:RESULT = " False ";:}
+                    |TkCADENA: a  TkSUMA  expresionTraduccion:b {:RESULT = a.toString()+" , "+b.toString();:}   
 
 ;
 
@@ -143,29 +144,32 @@ instruccionConsoleWr ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresio
                         :}
 ;
 
-instruccionIF ::=  TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad TkLLAVEC
-                        {:
-                            LinkedList<String> lista = new LinkedList<>();
-                            lista.add("if " + exp + ":");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
-                            func.Funcion.ContadorIndentacion--;
-                            RESULT = lista;
-                        :}
-                        |TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkELSE_R TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC
-                        {:
-                            LinkedList<String> lista = new LinkedList<>();
-                            lista.add("if " + exp + ":");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
-                            func.Funcion.ContadorIndentacion--;
-                            lista.add("else:");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
-                            func.Funcion.ContadorIndentacion--;
-                            RESULT = lista;
-                        :}
+
+instruccionIF ::= TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad TkLLAVEC
+                {:
+                    LinkedList<String> lista = new LinkedList<>();
+                    lista.add("if " + exp + ":");
+                    func.Funcion.ContadorIndentacion++;
+                    lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
+                    func.Funcion.ContadorIndentacion--;
+                    RESULT = lista;
+                :}
+                | TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkELSE_R TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC
+                {:
+                    LinkedList<String> lista = new LinkedList<>();
+                    lista.add("if " + exp + ":");
+                    func.Funcion.ContadorIndentacion++;
+                    lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
+                    func.Funcion.ContadorIndentacion--;
+                    lista.add("else:");
+                    func.Funcion.ContadorIndentacion++;
+                    lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
+                    func.Funcion.ContadorIndentacion--;
+                    RESULT = lista;
+                :} 
+                
 ;
+
 
 expresionRelacional ::= TkMAYORQUE: val {:RESULT = val;:}
                     | TkMENORQUE: val {:RESULT = val;:}

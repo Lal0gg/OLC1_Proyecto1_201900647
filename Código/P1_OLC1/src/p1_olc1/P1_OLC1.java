@@ -35,7 +35,7 @@ public class P1_OLC1 {
 
         GUI nuevaGUI = new GUI();
         nuevaGUI.setVisible(true);
-    // analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
+     analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
        // analizadorJson("src/json/", "Lexer.jflex", "Parser.cup");
         String entrada = """
                          // Hola w 
