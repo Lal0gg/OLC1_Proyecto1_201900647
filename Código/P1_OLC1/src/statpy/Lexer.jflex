@@ -93,6 +93,7 @@ identificador = [a-z][a-z0-9_]*
 "Console"               {Token NuevoToken = new Token("TkCONSOLE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCONSOLE_R> Tk: " + yytext());return new Symbol(sym.TkCONSOLE_R, yycolumn, yyline, yytext());}
 "Write"                 {Token NuevoToken = new Token("TkWRITE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkWRITE_R> Tk: " + yytext());return new Symbol(sym.TkWRITE_R, yycolumn, yyline, yytext());}
 "else"                  {Token NuevoToken = new Token("TkELSE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkELSE_R> Tk: " + yytext());return new Symbol(sym.TkELSE_R, yycolumn, yyline, yytext());}
+"switch"                {Token NuevoToken = new Token("TkSWITCH_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkSWITCH_R> Tk: "  + yytext());return new Symbol(sym.TkSWITCH_R, yycolumn, yyline, yytext());}
 "case"                  {Token NuevoToken = new Token("TkCASE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCASE_R> Tk: "  + yytext());return new Symbol(sym.TkCASE_R, yycolumn, yyline, yytext());}
 "break"                 {Token NuevoToken = new Token("TkBRAKE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkBRAKE_R> Tk: "  + yytext());return new Symbol(sym.TkBRAKE_R, yycolumn, yyline, yytext());}
 "default"               {Token NuevoToken = new Token("TkDEFAULT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDEFAULT_R> Tk: " + yytext());return new Symbol(sym.TkDEFAULT_R, yycolumn, yyline, yytext());}
@@ -110,6 +111,7 @@ identificador = [a-z][a-z0-9_]*
 "Valores"               {Token NuevoToken = new Token("TkValores",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkValores> Tk: "  + yytext());return new Symbol(sym.TkValores, yycolumn, yyline, yytext());}
 "true"                  {Token NuevoToken = new Token("TkTrue",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTrue> Tk: "  + yytext());return new Symbol(sym.TkTrue, yycolumn, yyline, yytext());}
 "false"                 {Token NuevoToken = new Token("TkFalse",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkFalse> Tk: "  + yytext());return new Symbol(sym.TkFalse, yycolumn, yyline, yytext());}
+"else if"               {Token NuevoToken = new Token("TkElseIf",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkElseIf> Tk: "  + yytext());return new Symbol(sym.TkElseIf, yycolumn, yyline, yytext());}
 
 
 

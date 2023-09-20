@@ -51,7 +51,9 @@ terminal String TkCONSOLE_R,TkWRITE_R;
 terminal String TkFOR_R, TkDO_R,TkWHILE_R;
 terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewValor;
 terminal String TkEjeX,TkTituloX,TkTituloY,TkTitulo,TkValores;
-terminal STring TkTrue,TkFalse;
+terminal String TkTrue,TkFalse;
+terminal String TkElseIf;
+terminal String TkSWITCH_R;
 
 //------> Declaración de no terminales
 non terminal inicio;
@@ -62,8 +64,7 @@ non terminal listainstrGraficas;
 non terminal expresionTraduccion, expresionGraficas;
 non terminal instruccionIF, instruccionConsoleWr, instruccionWhile;
 non terminal expresionRelacional;
-
-
+non terminal instruccionDowhile;
 //------> PRECEDENCIA
 precedence left TkOR;
 precedence left TkAND;
@@ -111,6 +112,9 @@ listainstrTraduccion ::= listainstrTraduccion:lista  instruccionTraduccion: val
 
 instruccionTraduccion ::= instruccionConsoleWr: val {:RESULT = val;:}
                          | instruccionIF: val {:RESULT = val;:}
+                         | instruccionWhile: val {:RESULT = val;:}
+                         | instruccionDowhile: val {:RESULT = val;:}
+                         | error TkPUNTOYCOMA
 ;
 
 
@@ -144,31 +148,71 @@ instruccionConsoleWr ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresio
                         :}
 ;
 
-
-instruccionIF ::= TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad TkLLAVEC
-                {:
-                    LinkedList<String> lista = new LinkedList<>();
-                    lista.add("if " + exp + ":");
-                    func.Funcion.ContadorIndentacion++;
-                    lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
-                    func.Funcion.ContadorIndentacion--;
-                    RESULT = lista;
-                :}
-                | TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkELSE_R TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC
-                {:
-                    LinkedList<String> lista = new LinkedList<>();
-                    lista.add("if " + exp + ":");
-                    func.Funcion.ContadorIndentacion++;
-                    lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
-                    func.Funcion.ContadorIndentacion--;
-                    lista.add("else:");
-                    func.Funcion.ContadorIndentacion++;
-                    lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
-                    func.Funcion.ContadorIndentacion--;
-                    RESULT = lista;
-                :} 
-                
+//TkElseIf
+instruccionIF ::=  TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad TkLLAVEC
+                        {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("if " + exp + ":");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
+                            func.Funcion.ContadorIndentacion--;
+                            RESULT = lista;
+                        :}
+                        |TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkELSE_R TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC
+                        {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("if " + exp + ":");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
+                            func.Funcion.ContadorIndentacion--;
+                            lista.add("else:");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
+                            func.Funcion.ContadorIndentacion--;
+                            RESULT = lista;
+                        :}
+                        |TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkElseIf TkPARENTESISAbre expresionTraduccion:exp2 TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC TkElseIf TkPARENTESISAbre expresionTraduccion:exp3 TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad3 TkLLAVEC
+                        {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("if " + exp + ":");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
+                            func.Funcion.ContadorIndentacion--;
+                            lista.add("else if " +exp2+" :");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
+                            func.Funcion.ContadorIndentacion--;
+                            lista.add("else if " +exp3+" :");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad3));
+                            func.Funcion.ContadorIndentacion--;
+                            RESULT = lista;   
+                        :}
+                        |TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkElseIf TkPARENTESISAbre expresionTraduccion:exp2 TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC TkELSE_R TkLLAVEA listainstrTraduccion:listaInstTrad3 TkLLAVEC
+                        {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("if " + exp + ":");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
+                            func.Funcion.ContadorIndentacion--;
+                            lista.add("else if " +exp2+" :");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
+                            func.Funcion.ContadorIndentacion--;
+                            lista.add("else:");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad3));
+                            func.Funcion.ContadorIndentacion--;
+                            RESULT = lista;   
+                        :}
 ;
+
+
+
+
+// no jala varios elifs ni luego de un elif un else
+
+
 
 
 expresionRelacional ::= TkMAYORQUE: val {:RESULT = val;:}
@@ -180,10 +224,30 @@ expresionRelacional ::= TkMAYORQUE: val {:RESULT = val;:}
 ; 
 
 
+instruccionWhile::= TkWHILE_R TkPARENTESISAbre expresionTraduccion:exp   TkPARENTESISCierra  TkLLAVEA   listainstrTraduccion:listainst  TkLLAVEC
+                    {:
+                            LinkedList<String> lista = new LinkedList<>();
+                            lista.add("while " + exp + " :");
+                            func.Funcion.ContadorIndentacion++;
+                            lista.addAll(func.Funcion.IndentacionPY(listainst));
+                            func.Funcion.ContadorIndentacion--;
+                            RESULT = lista;
+                    :}
+;
 
 
 
-
-
-
- 
+instruccionDowhile::=  TkDO_R TkLLAVEA listainstrTraduccion:listainst  TkLLAVEC TkWHILE_R  TkPARENTESISAbre expresionTraduccion:exp   TkPARENTESISCierra TkPUNTOYCOMA
+                    {:
+                        LinkedList<String> lista = new LinkedList<>();
+                        lista.add("while True:");
+                        func.Funcion.ContadorIndentacion++;
+                        lista.addAll(func.Funcion.IndentacionPY(listainst));
+                        lista.add("if  (" + exp + "):");
+                        func.Funcion.ContadorIndentacion++;
+                        lista.add("break");
+                        func.Funcion.ContadorIndentacion--;
+                        func.Funcion.ContadorIndentacion--;
+                        RESULT = lista;
+                    :}
+;
