@@ -70,6 +70,7 @@ non terminal instruccionFor;
 non terminal declaracionvariable;
 non terminal tipoDato;
 non terminal asignacionvariable;
+non terminal asginacionvariableIncremento;
 
 //------> PRECEDENCIA
 precedence left TkOR;
@@ -122,6 +123,7 @@ instruccionTraduccion ::= instruccionConsoleWr: val {:RESULT = val;:}
                          | instruccionDowhile: val {:RESULT = val;:}
                          | declaracionvariable: val {:RESULT = val;:}
                          | asignacionvariable: val {:RESULT = val;:}
+                         | instruccionFor : val {:RESULT = val;:}
                          | error TkPUNTOYCOMA
 ;
 
@@ -235,7 +237,7 @@ expresionRelacional ::= TkMAYORQUE: val {:RESULT = val;:}
 ; 
 
 
-instruccionWhile::= TkWHILE_R TkPARENTESISAbre expresionTraduccion:exp   TkPARENTESISCierra  TkLLAVEA   listainstrTraduccion:listainst  TkLLAVEC
+instruccionWhile::= TkWHILE_R TkPARENTESISAbre expresionTraduccion:exp   TkPARENTESISCierra   TkLLAVEA   listainstrTraduccion:listainst  TkLLAVEC
                     {:
                             LinkedList<String> lista = new LinkedList<>();
                             lista.add("while " + exp + " :");
@@ -264,8 +266,32 @@ instruccionDowhile::=  TkDO_R TkLLAVEA listainstrTraduccion:listainst  TkLLAVEC 
 ;
 
 
-instruccionFor::=  TkFOR_R  TkPARENTESISAbre  TkPARENTESISCierra TkLLAVEA  listainstrTraduccion:listainstr TkLLAVEC
+                            //                     int    j          =              1                           ;             j                     <                6    
+instruccionFor ::= TkFOR_R TkPARENTESISAbre  tipoDato TkIdentificador:a TkIGUAL expresionTraduccion:b TkPUNTOYCOMA TkIdentificador:c  expresionRelacional:d  expresionTraduccion:e TkPUNTOYCOMA TkIdentificador:f TkIncremento TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listainstr TkLLAVEC
+                    {:
+
+                        // b y e son objetos
+                        String nuevad = String.valueOf((Object)d);
+                        int nuevab = Integer.parseInt((String) (Object) b);
+                        int nuevae = Integer.parseInt((String) (Object) e);
+                        LinkedList<String> lista = new LinkedList<>();
+                        
+                        if ( "<=".equals(nuevad)){
+                            lista.add("for " + a+ " in range(" + b + ", " + String.valueOf(nuevae+1) + "):");
+                        }else if ("<".equals(nuevad)){
+                            lista.add("for " + a+ " in range(" + b + ", " + e + "):");
+                        }else{
+                            lista.add("for " + a+ " in range(" + b + ", " + e + "):");
+                        }
+                   
+                        func.Funcion.ContadorIndentacion++;
+                        lista.addAll(func.Funcion.IndentacionPY(listainstr));
+                        func.Funcion.ContadorIndentacion--;
+                        RESULT = lista;
+                    :}
 ;
+
+
 
 
 declaracionvariable ::= tipoDato TkIdentificador:b TkPUNTOYCOMA 
