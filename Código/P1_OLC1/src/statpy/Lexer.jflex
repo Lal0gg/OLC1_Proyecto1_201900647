@@ -72,7 +72,7 @@ identificador = [a-z][a-z0-9_]*
 "Valores"               {Token NuevoToken = new Token("TkValores",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkValores> Tk: "  + yytext());return new Symbol(sym.TkValores, yycolumn, yyline, yytext());}
 "true"                  {Token NuevoToken = new Token("TkTrue",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkTrue> Tk: "  + yytext());return new Symbol(sym.TkTrue, yycolumn, yyline, yytext());}
 "false"                 {Token NuevoToken = new Token("TkFalse",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkFalse> Tk: "  + yytext());return new Symbol(sym.TkFalse, yycolumn, yyline, yytext());}
-"else if"               {Token NuevoToken = new Token("TkElseIf",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkElseIf> Tk: "  + yytext());return new Symbol(sym.TkElseIf, yycolumn, yyline, yytext());}
+//"else if"               {Token NuevoToken = new Token("TkElseIf",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkElseIf> Tk: "  + yytext());return new Symbol(sym.TkElseIf, yycolumn, yyline, yytext());}
 
 // --> Simbolos = 25
 ";"     {Token NuevoToken = new Token("TkPUNTOYCOMA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkPUNTOYCOMA> Tk: " + yytext());return new Symbol(sym.TkPUNTOYCOMA, yycolumn, yyline, yytext());}

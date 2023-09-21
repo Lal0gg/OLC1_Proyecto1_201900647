@@ -30,7 +30,7 @@ public class sym {
   public static final int TkTituloY = 57;
   public static final int TkSignoDolar = 28;
   public static final int TkTituloX = 56;
-  public static final int TkIdentificador = 64;
+  public static final int TkIdentificador = 63;
   public static final int TkEjeX = 55;
   public static final int TkAND = 30;
   public static final int TkNOT = 32;
@@ -46,7 +46,6 @@ public class sym {
   public static final int TkMAYORIGUAL = 25;
   public static final int EOF = 0;
   public static final int TkSUMA = 6;
-  public static final int TkElseIf = 62;
   public static final int R_MOSTRAR = 7;
   public static final int error = 1;
   public static final int TkCOMA = 15;
@@ -54,7 +53,7 @@ public class sym {
   public static final int TkDECIMAL = 3;
   public static final int TkMENORQUE = 24;
   public static final int TkDOUBLE_R = 35;
-  public static final int TkSWITCH_R = 63;
+  public static final int TkSWITCH_R = 62;
   public static final int TkIGUALIGUAL = 27;
   public static final int TkIGUAL = 11;
   public static final int TkLLAVEC = 17;
@@ -136,7 +135,6 @@ public class sym {
   "TkValores",
   "TkTrue",
   "TkFalse",
-  "TkElseIf",
   "TkSWITCH_R",
   "TkIdentificador"
   };

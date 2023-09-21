@@ -14,6 +14,7 @@ import java.util.LinkedList;
 parser code 
 {:
     public static String resultado = ""; 
+    public static int contadorCases =0;
 
     public void syntax_error(Symbol s)
     {       
@@ -52,7 +53,7 @@ terminal String TkFOR_R, TkDO_R,TkWHILE_R;
 terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewValor;
 terminal String TkEjeX,TkTituloX,TkTituloY,TkTitulo,TkValores;
 terminal String TkTrue,TkFalse;
-terminal String TkElseIf;
+//terminal String TkElseIf;
 terminal String TkSWITCH_R;
 terminal String TkIdentificador;
 
@@ -70,7 +71,10 @@ non terminal instruccionFor;
 non terminal declaracionvariable;
 non terminal tipoDato;
 non terminal asignacionvariable;
-non terminal asginacionvariableIncremento;
+non terminal instrucccionSwitch;
+non terminal instruccionListaCasoss;
+non terminal instruccionLlaveC;
+non terminal instrucListCas;
 
 //------> PRECEDENCIA
 precedence left TkOR;
@@ -124,6 +128,7 @@ instruccionTraduccion ::= instruccionConsoleWr: val {:RESULT = val;:}
                          | declaracionvariable: val {:RESULT = val;:}
                          | asignacionvariable: val {:RESULT = val;:}
                          | instruccionFor : val {:RESULT = val;:}
+                         | instrucccionSwitch : val {:RESULT = val;:}
                          | error TkPUNTOYCOMA
 ;
 
@@ -162,78 +167,61 @@ instruccionConsoleWr ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresio
 ;
 
 //TkElseIf
-instruccionIF ::=  TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad TkLLAVEC
-                        {:
-                            LinkedList<String> lista = new LinkedList<>();
-                            lista.add("if " + exp + ":");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
-                            func.Funcion.ContadorIndentacion--;
-                            RESULT = lista;
-                        :}
-                        |TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkELSE_R TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC
-                        {:
-                            LinkedList<String> lista = new LinkedList<>();
-                            lista.add("if " + exp + ":");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
-                            func.Funcion.ContadorIndentacion--;
-                            lista.add("else:");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
-                            func.Funcion.ContadorIndentacion--;
-                            RESULT = lista;
-                        :}
-                        |TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkElseIf TkPARENTESISAbre expresionTraduccion:exp2 TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC TkElseIf TkPARENTESISAbre expresionTraduccion:exp3 TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad3 TkLLAVEC
-                        {:
-                            LinkedList<String> lista = new LinkedList<>();
-                            lista.add("if " + exp + ":");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
-                            func.Funcion.ContadorIndentacion--;
-                            lista.add("else if " +exp2+" :");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
-                            func.Funcion.ContadorIndentacion--;
-                            lista.add("else if " +exp3+" :");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad3));
-                            func.Funcion.ContadorIndentacion--;
-                            RESULT = lista;   
-                        :}
-                        |TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad1 TkLLAVEC TkElseIf TkPARENTESISAbre expresionTraduccion:exp2 TkPARENTESISCierra TkLLAVEA listainstrTraduccion:listaInstTrad2 TkLLAVEC TkELSE_R TkLLAVEA listainstrTraduccion:listaInstTrad3 TkLLAVEC
-                        {:
-                            LinkedList<String> lista = new LinkedList<>();
-                            lista.add("if " + exp + ":");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad1));
-                            func.Funcion.ContadorIndentacion--;
-                            lista.add("else if " +exp2+" :");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad2));
-                            func.Funcion.ContadorIndentacion--;
-                            lista.add("else:");
-                            func.Funcion.ContadorIndentacion++;
-                            lista.addAll(func.Funcion.IndentacionPY(listaInstTrad3));
-                            func.Funcion.ContadorIndentacion--;
-                            RESULT = lista;   
-                        :}
+
+instruccionIF::=  TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra TkLLAVEA  listainstrTraduccion:listaInstTrad  instruccionLlaveC:listacierre
+                    {:
+                        LinkedList<String> lista = new LinkedList<>();
+                        lista.add("if " + exp + ":");
+                        func.Funcion.ContadorIndentacion++;
+                        lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
+                        func.Funcion.ContadorIndentacion--;
+                        lista.addAll((LinkedList<String>)listacierre);
+                        RESULT = lista;
+                    :}
+
 ;
 
 
 
+instruccionLlaveC::=  TkLLAVEC
+                    {:
+                        LinkedList<String> lista = new LinkedList<>();
+                        lista.add("");
+                        RESULT = lista;
 
+                    :}
+                    | TkLLAVEC  TkELSE_R TkLLAVEA   listainstrTraduccion:listaInstTrad   TkLLAVEC
+                    {:
+                        LinkedList<String> lista = new LinkedList<>();
+                        lista.add("else:");
+                        func.Funcion.ContadorIndentacion++;
+                        lista.addAll(func.Funcion.IndentacionPY(listaInstTrad));
+                        func.Funcion.ContadorIndentacion--;
+                        RESULT = lista;
+                        
+                    :}
+                    | TkLLAVEC  TkELSE_R TkIF_R TkPARENTESISAbre expresionTraduccion:exp TkPARENTESISCierra   TkLLAVEA   listainstrTraduccion:listaInstTrad3    instruccionLlaveC:listllaveC
+                    {:
+                        LinkedList<String> lista = new LinkedList<>();
+                        lista.add("elif " +exp+" :");
+                        func.Funcion.ContadorIndentacion++;
+                        lista.addAll(func.Funcion.IndentacionPY(listaInstTrad3));
+                        func.Funcion.ContadorIndentacion--;
+                        lista.addAll((LinkedList<String>)listllaveC);
+                        RESULT = lista;  
+                    :}
+;
 // no jala varios elifs ni luego de un elif un else
 
 
 
 
-expresionRelacional ::= TkMAYORQUE: val {:RESULT = val;:}
-                    | TkMENORQUE: val {:RESULT = val;:}
-                    | TkMAYORIGUAL: val {:RESULT = val;:}
-                    | TkMENORIGUAL: val {:RESULT = val;:}
-                    | TkIGUALIGUAL: val {:RESULT = val;:}
-                    | TkIDISTINTO: val {:RESULT = val;:}
+expresionRelacional ::= TkMAYORQUE: val {:RESULT = ">";:}
+                    | TkMENORQUE: val {:RESULT = "<";:}
+                    | TkMAYORIGUAL: val {:RESULT = ">=";:}
+                    | TkMENORIGUAL: val {:RESULT = "<=";:}
+                    | TkIGUALIGUAL: val {:RESULT = "==";:}
+                    | TkIDISTINTO: val {:RESULT = "!=";:}
 ; 
 
 
@@ -325,3 +313,88 @@ asignacionvariable ::= TkIdentificador: a TkIGUAL  expresionTraduccion:b  TkPUNT
                         :}
 ;
 
+
+instrucccionSwitch::= TkSWITCH_R  TkPARENTESISAbre expresionTraduccion:exp  TkPARENTESISCierra TkLLAVEA  instruccionListaCasoss:listass  TkLLAVEC
+                          {:
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.add("def switch (" + exp + " ) :");
+                                func.Funcion.ContadorIndentacion++;
+                                lista.add("switcher = {");
+                                func.Funcion.ContadorIndentacion++;
+                                lista.addAll(func.Funcion.IndentacionPY((LinkedList<String>)listass));
+                                lista.add("}");
+                                func.Funcion.ContadorIndentacion--;
+                                func.Funcion.ContadorIndentacion--;
+                                RESULT = lista;
+                          :}
+                        
+
+
+;
+
+instruccionListaCasoss::=  instruccionListaCasoss:lista2  instrucListCas :val 
+                            {:
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.addAll((LinkedList) lista2);
+                                lista.addAll((LinkedList) val);
+                                RESULT = (LinkedList) lista;
+                            :}
+                           | instrucListCas : val
+                            {:
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.addAll((LinkedList)val);
+                                RESULT = (LinkedList) lista;
+                            :}
+;
+
+        
+                            
+instrucListCas::=  TkCASE_R  expresionTraduccion:exp   TkDOSPUNTOS listainstrTraduccion:listainstr
+                           
+                          {:    
+                                contadorCases++;
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.add(exp + " :") ;
+                                func.Funcion.ContadorIndentacion++;
+                                lista.addAll(func.Funcion.IndentacionPY(listainstr));
+                                func.Funcion.ContadorIndentacion--;
+                                LinkedList<String> lista2 = new LinkedList<>();
+                                lista2.add(",") ;
+                                func.Funcion.ContadorIndentacion++;
+                                lista.addAll(func.Funcion.IndentacionPY(lista2));
+                                func.Funcion.ContadorIndentacion--;
+                                RESULT = lista;
+
+                          :}
+                         | TkCASE_R  expresionTraduccion:exp   TkDOSPUNTOS listainstrTraduccion:listainstr1 TkBRAKE_R TkPUNTOYCOMA
+                          {:    
+                                contadorCases++;
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.add(exp + " :") ;
+                                func.Funcion.ContadorIndentacion++;
+                                lista.addAll(func.Funcion.IndentacionPY(listainstr1));
+                                func.Funcion.ContadorIndentacion--;
+                                LinkedList<String> lista2 = new LinkedList<>();
+                                lista2.add(",") ;
+                                func.Funcion.ContadorIndentacion++;
+                                lista.addAll(func.Funcion.IndentacionPY(lista2));
+                                func.Funcion.ContadorIndentacion--;
+                                RESULT = lista;
+
+                          :}
+                         | TkDEFAULT_R TkDOSPUNTOS listainstrTraduccion:listainstr2
+                          {:
+                                int conta = Integer.parseInt((String) (Object)contadorCases);
+                                LinkedList<String> lista = new LinkedList<>();
+                                lista.add(String.valueOf(conta+1) + " :") ;
+                                func.Funcion.ContadorIndentacion++;
+                                lista.addAll(func.Funcion.IndentacionPY(listainstr2));
+                                func.Funcion.ContadorIndentacion--;
+                                LinkedList<String> lista2 = new LinkedList<>();
+                                lista2.add(",") ;
+                                func.Funcion.ContadorIndentacion++;
+                                lista.addAll(func.Funcion.IndentacionPY(lista2));
+                                func.Funcion.ContadorIndentacion--;
+                                RESULT = lista;
+                          :}
+;

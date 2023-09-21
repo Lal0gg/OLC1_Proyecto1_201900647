@@ -41,7 +41,7 @@ public class P1_OLC1 {
                          // Hola w 
                         // xdd -   f 5zx
                          /* jfklñdjlñkfajf
-                         xdf
+                         xdf    
                          df
                               */
                          Console.Write("holiwi");
