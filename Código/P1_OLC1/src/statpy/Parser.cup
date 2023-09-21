@@ -4,6 +4,7 @@ package statpy;
 import java_cup.runtime.*;
 import clases.Erroor;
 import func.Funcion;
+import clases.VarGlobales;
 import traductionPy.indentPy;
 import java.util.LinkedList; 
 
@@ -73,6 +74,10 @@ non terminal instrucccionSwitch;
 non terminal instruccionListaCasoss;
 non terminal instruccionLlaveC;
 non terminal instrucListCas;
+non terminal instruccionDefinirGlobales;
+non terminal instruccionesGraficaBarras;
+non terminal instruccionesGraficaPie;
+non terminal identificadorTK,listaIdentificadores
 
 //------> PRECEDENCIA
 precedence left TkOR;
@@ -392,4 +397,38 @@ instrucListCas::=  TkCASE_R  expresionTraduccion:exp   TkDOSPUNTOS listainstrTra
                                 func.Funcion.ContadorIndentacion--;
                                 RESULT = lista;
                           :}
+;
+
+
+listainstrGraficas::=  TkSTRING_R  TkIdentificador  TkIGUAL TkSignoDolar  TkLLAVEA TkNewValor TkCOMA TkCADENA  TkCOMA TkCADENA     TkLLAVEC TkPUNTOYCOMA
+                    | TkSTRING_R   TkIdentificador  TkIGUAL TkCADENA TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkIdentificador  TkIGUAL TkSignoDolar  TkLLAVEA TkNewValor TkCOMA TkCADENA  TkCOMA TkCADENA     TkLLAVEC TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkIdentificador  TkIGUAL TkDECIMAL TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkIdentificador  TkIGUAL TkCADENA TkPUNTOYCOMA
+                    | TkSTRING_R   TkTitulo  TkIGUAL  TkIdentificador;
+                    | TkSTRING_R   TkCorchetesArreglo  TkEjeX  TkIGUAL  TkLLAVEA  listaIdentificadores TkLLAVEC TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkCorchetesArreglo  TkValores  TkIGUAL  TkLLAVEA  listaIdentificadores TkLLAVEC TkPUNTOYCOMA
+                    | TkSTRING_R   TkTituloY  TkIGUAL  listaIdentificadores
+                    | TkDOUBLE_R   TkCorchetesArreglo  TkValores  TkIGUAL  TkLLAVEA  listaIdentificadores TkLLAVEC TkPUNTOYCOMA
+
+;
+
+listaIdentificadores ::= identificadorTK    | identificadorTK COMA listaidentificadores 
+
+identificadorTK::  TkIdentificador  
+                | TkSignoDolar  TkLLAVEA TkNewValor TkCOMA TkCADENA  TkCOMA TkCADENA TkLLAVEC    
+                | TkCADENA
+                | TkDECIMAL
+
+                         
+;
+
+
+instruccionDefinirGlobales::= TkVOID_R TkDEFINIR_GLOBALES_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA  listainstrGraficas TkLLAVEC
+;
+
+instruccionesGraficaBarras ::=  TkVOID_R TkGRAFICA_BARRAS_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA listainstrGraficas TkLLAVEC
+;
+
+instruccionesGraficaPie ::= TkVOID_R TkGRAFICA_PIE_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA  listainstrGraficas TkLLAVEC
 ;

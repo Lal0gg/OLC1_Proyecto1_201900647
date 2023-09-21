@@ -485,6 +485,17 @@ public class GUI extends javax.swing.JFrame {
             }
 
         } else if ("Json".equals(jLabel4.getText())) {
+             ReporteErrores ReporteE1 = new ReporteErrores();
+            ReporteE1.ReporteErr(ErrorList);
+            for (Erroor error : ErrorList) {
+                System.out.println("Tipo de Error: " + error.getType());
+                System.out.println("Descripción: " + error.getDescription());
+                System.out.println("Carácter: " + error.getCharacter());
+                System.out.println("Línea: " + error.getLine());
+                System.out.println("Columna: " + error.getColumn());
+                System.out.println("---------------------------");
+            }
+            
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 

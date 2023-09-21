@@ -102,7 +102,7 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\1\1\3\1\1\1\4\1\5"+
     "\1\1\1\6\1\7\1\0\1\10\1\0\1\11\3\0"+
-    "\1\4\1\0\1\12\6\0\1\13";
+    "\1\4\1\0\1\11\6\0\1\12";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[28];
@@ -724,57 +724,52 @@ public class Lexer implements java_cup.runtime.Scanner {
             { Erroor errorsito = new Erroor("Lexico Json", yytext() ,"No es válido en este lenguaje", yyline, yycolumn);Funcion.ErrorList.add(errorsito); System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn);
             }
           // fall through
-          case 12: break;
+          case 11: break;
           case 2:
             { /* Espacios en blanco se ignoran */
             }
           // fall through
-          case 13: break;
+          case 12: break;
           case 3:
             { Token NuevoToken = new Token("TkJsCOMA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMA> Tk: " + yytext());return new Symbol(sym.TkJsCOMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 14: break;
+          case 13: break;
           case 4:
             { Token NuevoToken = new Token("TkJsDECIMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsDECIMAL> Tk: " + yytext());return new Symbol(sym.TkJsDECIMAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 15: break;
+          case 14: break;
           case 5:
             { Token NuevoToken = new Token("TkJsDOSPUNTOS",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsDOSPUNTOS> Tk: " + yytext());return new Symbol(sym.TkJsDOSPUNTOS, yycolumn, yyline, yytext());
             }
           // fall through
-          case 16: break;
+          case 15: break;
           case 6:
             { Token NuevoToken = new Token("TkJsLLAVEABRE",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsLLAVEABRE> Tk: " + yytext());return new Symbol(sym.TkJsLLAVEABRE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 17: break;
+          case 16: break;
           case 7:
             { Token NuevoToken = new Token("TkJsLLAVECIERRA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsLLAVECIERRA> Tk: " + yytext()); return new Symbol(sym.TkJsLLAVECIERRA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 18: break;
+          case 17: break;
           case 8:
             { Token NuevoToken = new Token("TkJsCADENA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCADENA> Tk: " + yytext()); return new Symbol(sym.TkJsCADENA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 19: break;
+          case 18: break;
           case 9:
-            { Token NuevoToken = new Token("TkJsCOMENTUNALINEA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMENTUNALINEA> Tk: " + yytext());return new Symbol(sym.TkJsCOMENTUNALINEA, yycolumn, yyline, yytext());
+            { /*  no hacen Nada */
             }
           // fall through
-          case 20: break;
+          case 19: break;
           case 10:
-            { Token NuevoToken = new Token("TkJsCOMENTMULTI",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMENTMULTI> Tk: " + yytext());return new Symbol(sym.TkJsCOMENTMULTI, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 21: break;
-          case 11:
             { 
             }
           // fall through
-          case 22: break;
+          case 20: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

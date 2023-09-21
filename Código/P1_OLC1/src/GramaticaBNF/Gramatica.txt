@@ -6,7 +6,10 @@ Organización de Lenguajes y Compiladores 1 “N”
 NO TERMINALES  = { inicio; instruccionTraduccion ; instruccionGraficas; listainstrTraduccion; listainstrGraficas;
 expresionTraduccion, expresionGraficas; instruccionIF; instruccionConsoleWr, instruccionWhile;expresionRelacional;
 instruccionDowhile; instruccionFor; declaracionvariable; tipoDato;asignacionvariable; instrucccionSwitch; instruccionListaCasoss;instruccionLlaveC; instrucListCas; 
+instruccionDefinirGlobales;instruccionesGraficaBarras;instruccionesGraficaPie,identificadorTK,listaIdentificadores
 }
+
+
 
 ------------------------------> TERMINALES <-----------------------------------------
 TERMINALES = { TkENTERO, TkDECIMAL ,TkCADENA,TkErChar; TkSUMA,R_MOSTRAR,TkMULTIPLICACION,
@@ -127,3 +130,37 @@ instrucListCas::=  TkCASE_R  expresionTraduccion   TkDOSPUNTOS listainstrTraducc
                          | TkCASE_R  expresionTraduccion   TkDOSPUNTOS listainstrTraduccion TkBRAKE_R TkPUNTOYCOMA
                          | TkDEFAULT_R TkDOSPUNTOS listainstrTraduccion
 
+
+
+listainstrGraficas::=  TkSTRING_R  TkIdentificador  TkIGUAL TkSignoDolar  TkLLAVEA TkNewValor TkCOMA TkCADENA  TkCOMA TkCADENA     TkLLAVEC TkPUNTOYCOMA
+                    | TkSTRING_R   TkIdentificador  TkIGUAL TkCADENA TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkIdentificador  TkIGUAL TkSignoDolar  TkLLAVEA TkNewValor TkCOMA TkCADENA  TkCOMA TkCADENA     TkLLAVEC TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkIdentificador  TkIGUAL TkDECIMAL TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkIdentificador  TkIGUAL TkCADENA TkPUNTOYCOMA
+                    | TkSTRING_R   TkTitulo  TkIGUAL  TkIdentificador;
+                    | TkSTRING_R   TkCorchetesArreglo  TkEjeX  TkIGUAL  TkLLAVEA  listaIdentificadores TkLLAVEC TkPUNTOYCOMA
+                    | TkDOUBLE_R   TkCorchetesArreglo  TkValores  TkIGUAL  TkLLAVEA  listaIdentificadores TkLLAVEC TkPUNTOYCOMA
+                    | TkSTRING_R   TkTituloY  TkIGUAL  listaIdentificadores
+                    | TkDOUBLE_R   TkCorchetesArreglo  TkValores  TkIGUAL  TkLLAVEA  listaIdentificadores TkLLAVEC TkPUNTOYCOMA
+
+;
+
+listaIdentificadores ::= identificadorTK    | identificadorTK COMA listaidentificadores 
+
+identificadorTK::  TkIdentificador  
+                | TkSignoDolar  TkLLAVEA TkNewValor TkCOMA TkCADENA  TkCOMA TkCADENA TkLLAVEC    
+                | TkCADENA
+                | TkDECIMAL
+
+                         
+;
+
+
+instruccionDefinirGlobales::= TkVOID_R TkDEFINIR_GLOBALES_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA  listainstrGraficas TkLLAVEC
+;
+
+instruccionesGraficaBarras ::=  TkVOID_R TkGRAFICA_BARRAS_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA listainstrGraficas TkLLAVEC
+;
+
+instruccionesGraficaPie ::= TkVOID_R TkGRAFICA_PIE_R TkPARENTESISAbre TkPARENTESISCierra TkLLAVEA  listainstrGraficas TkLLAVEC
+;

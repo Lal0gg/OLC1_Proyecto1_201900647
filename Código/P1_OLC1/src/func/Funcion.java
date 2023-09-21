@@ -11,6 +11,7 @@ import java.awt.List;
 import clases.Token;
 import clases.Erroor;
 import clases.Simbolito;
+import clases.VarGlobales;
 import java.util.LinkedList;
 
 
@@ -46,6 +47,10 @@ public class Funcion {
     public static HashMap<String, LinkedList<Simbolito>> HashMapFileJson = new HashMap<>();
     //            nameArchivoJson -- HashmapVariable
     public static HashMap<String, String> HashMapVariablesJson = new HashMap<>();
+
+    
+    // lista  de objetos de tipo globales
+    public static LinkedList<VarGlobales> ListadeVariablesGlobales = new LinkedList<>();
 
    
    public static String ConsoleWrite(String expresion){

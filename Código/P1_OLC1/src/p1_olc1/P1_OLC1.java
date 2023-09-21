@@ -25,18 +25,19 @@ import traductionPy.indentPy;
 public class P1_OLC1 {
 
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new McWinLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            System.err.println("No se pudo aplicar el Look and Feel deseado: " + e.getMessage());
-            e.printStackTrace();
-        }
+//        try {
+//            UIManager.setLookAndFeel(new McWinLookAndFeel());
+//        } catch (UnsupportedLookAndFeelException e) {
+//            System.err.println("No se pudo aplicar el Look and Feel deseado: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        
+//
+//        GUI nuevaGUI = new GUI();
+//        nuevaGUI.setVisible(true);
         
-
-        GUI nuevaGUI = new GUI();
-        nuevaGUI.setVisible(true);
-        
-//     analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
+    analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
+ //       analizadorJson("src/json/","Lexer.jflex","Parser.cup");
 
   
 
