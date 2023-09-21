@@ -35,38 +35,10 @@ public class P1_OLC1 {
 
         GUI nuevaGUI = new GUI();
         nuevaGUI.setVisible(true);
+        
 //     analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
-       // analizadorJson("src/json/", "Lexer.jflex", "Parser.cup");
-        String entrada = """
-                         // Hola w 
-                        // xdd -   f 5zx
-                         /* jfklñdjlñkfajf
-                         xdf    
-                         df
-                              */
-                         Console.Write("holiwi");
-                         Console.write(85.5);
-                         Console.WriTe(5);
-                         console.write(6.5);
-                         """;
 
-        //analizarStatpy(entrada);
-        String entrada2 = """
-                          MOSTRAR ( 2*7 + 3);
-                        """;
-        //analizarJson(entrada2);
-        //pruebitaIndentationpy();
-
-
-//        double[] valores={1.0,5.0,3.5,1.5,2.2};
-//        String[] encabezaoX={"nota1","nota2","nota3","nota4","nota5"};
-//        
-//        GraficaBarras.GBarras("Grafica1", "Notas", "Valores", valores, encabezaoX);
-//
-//
-//        
-//        System.out.println(indentText("print(\"hola perros\")", 0));
-
+  
 
     }
 

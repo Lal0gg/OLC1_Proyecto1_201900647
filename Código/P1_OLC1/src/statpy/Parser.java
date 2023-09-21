@@ -1422,7 +1422,7 @@ class CUP$Parser$actions {
 		int listainstr2right = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		LinkedList listainstr2 = (LinkedList)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                                int conta = contadorCases;
+                                int conta = Integer.parseInt((String) (Object)contadorCases);
                                 LinkedList<String> lista = new LinkedList<>();
                                 lista.add(String.valueOf(conta+1) + " :") ;
                                 func.Funcion.ContadorIndentacion++;

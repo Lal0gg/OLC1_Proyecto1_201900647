@@ -213,9 +213,6 @@ instruccionLlaveC::=  TkLLAVEC
 ;
 // no jala varios elifs ni luego de un elif un else
 
-
-
-
 expresionRelacional ::= TkMAYORQUE: val {:RESULT = ">";:}
                     | TkMENORQUE: val {:RESULT = "<";:}
                     | TkMAYORIGUAL: val {:RESULT = ">=";:}

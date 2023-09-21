@@ -37,8 +37,8 @@ comentariolinea =\/\/[^\n]*
 
 {decimal}               { Token NuevoToken = new Token("TkJsDECIMAL",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsDECIMAL> Tk: " + yytext());return new Symbol(sym.TkJsDECIMAL, yycolumn, yyline, yytext()); }
 {cadena}                { Token NuevoToken = new Token("TkJsCADENA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCADENA> Tk: " + yytext()); return new Symbol(sym.TkJsCADENA, yycolumn, yyline, yytext()); }
-{comentariomultilinea}  { Token NuevoToken = new Token("TkJsCOMENTMULTI",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMENTMULTI> Tk: " + yytext());return new Symbol(sym.TkJsCOMENTMULTI, yycolumn, yyline, yytext()); }
-{comentariolinea}       { Token NuevoToken = new Token("TkJsCOMENTUNALINEA",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkJsCOMENTUNALINEA> Tk: " + yytext());return new Symbol(sym.TkJsCOMENTUNALINEA, yycolumn, yyline, yytext()); }
+{comentariomultilinea}  { /*  no hacen Nada */}
+{comentariolinea}       { /*  no hacen Nada */}
 
 
 

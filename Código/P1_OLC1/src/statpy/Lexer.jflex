@@ -44,7 +44,7 @@ identificador = [a-z][a-z0-9_]*
 
 // --> Palabras Reservadas = 30 
 "int"                   {Token NuevoToken = new Token("TkINT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkINT_R> Tk: "  + yytext());return new Symbol(sym.TkINT_R, yycolumn, yyline, yytext()); }
-"double"                {Token NuevoToken = new Token("TkINT_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkINT_R> Tk: " + yytext());return new Symbol(sym.TkINT_R, yycolumn, yyline, yytext());}
+"double"                {Token NuevoToken = new Token("TkDOUBLE_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDOUBLE_R> Tk: " + yytext());return new Symbol(sym.TkDOUBLE_R, yycolumn, yyline, yytext());}
 "char"                  {Token NuevoToken = new Token("TkCHAR_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCHAR_R> Tk: "  + yytext());return new Symbol(sym.TkCHAR_R, yycolumn, yyline, yytext());}
 "bool"                  {Token NuevoToken = new Token("TkBOOL_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkBOOL_R> Tk: "  +yytext());return new Symbol(sym.TkBOOL_R, yycolumn, yyline, yytext());}
 "string"                {Token NuevoToken = new Token("TkSTRING_R",yytext(),yyline,yycolumn);Funcion.TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkSTRING_R> Tk: "  + yytext());return new Symbol(sym.TkSTRING_R, yycolumn, yyline, yytext());}
