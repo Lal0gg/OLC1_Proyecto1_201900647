@@ -1,1 +1,129 @@
 
+Eduardo Josué González Cifuentes
+201900647
+Organización de Lenguajes y Compiladores 1 “N”
+------------------------------> NO TERMINALES < -----------------------------------------
+NO TERMINALES  = { inicio; instruccionTraduccion ; instruccionGraficas; listainstrTraduccion; listainstrGraficas;
+expresionTraduccion, expresionGraficas; instruccionIF; instruccionConsoleWr, instruccionWhile;expresionRelacional;
+instruccionDowhile; instruccionFor; declaracionvariable; tipoDato;asignacionvariable; instrucccionSwitch; instruccionListaCasoss;instruccionLlaveC; instrucListCas; 
+}
+
+------------------------------> TERMINALES <-----------------------------------------
+TERMINALES = { TkENTERO, TkDECIMAL ,TkCADENA,TkErChar; TkSUMA,R_MOSTRAR,TkMULTIPLICACION,
+TkRESTA,TkDIVISION,TkIGUAL; TkPUNTOYCOMA,TkDOSPUNTOS,TkPUNTO,TkCOMA; TkAND,TkOR, TkNOT,
+TkIncremento;TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra,TkCORCHETEAbre,TkCORCHETECierra,
+TkCorchetesArreglo; TkMAYORQUE, TkMENORQUE, TkMAYORIGUAL, TkVOID_R,TkMAIN_R; TkMENORIGUAL,TkIGUALIGUAL,
+TkSignoDolar,TkIDISTINTO; TkAND,TkOR, TkNOT,TkIncremento;  TkINT_R,TkDOUBLE_R,TkCHAR_R,TkBOOL_R,TkSTRING_R; 
+TkFOR_R, TkDO_R,TkWHILE_R; TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewValor; TkEjeX,TkTituloX,
+TkTituloY,TkTitulo,TkValores; TkTrue,TkFalse; TkSWITCH_R; TkIdentificador;
+
+}
+
+-----------------------------------------> PRODUCCIONES < -----------------------------------------
+inicio::= TkVOID_R TkMAIN_R TkPARENTESISAbre  TkPARENTESISCierra  TkLLAVEA  listainstrTraduccion TkLLAVEC
+
+
+listainstrTraduccion ::= listainstrTraduccion  instruccionTraduccion 
+
+
+instruccionTraduccion ::= instruccionConsoleWr
+                         | instruccionIF
+                         | instruccionWhile
+                         | instruccionDowhile
+                         | declaracionvariable
+                         | asignacionvariable
+                         | instruccionFor 
+                         | instrucccionSwitch 
+                         | error TkPUNTOYCOMA
+
+
+
+expresionTraduccion ::= expresionTraduccion  TkSUMA  expresionTraduccion
+                    |expresionTraduccion  TkRESTA  expresionTraduccion
+                    |expresionTraduccion  TkMULTIPLICACION expresionTraduccion
+                    |expresionTraduccion  TkDIVISION   expresionTraduccion
+                    |TkRESTA expresionTraduccion
+                    |TkENTERO
+                    |TkDECIMAL
+                    |TkErChar
+                    |TkCADENA
+                    |expresionTraduccion  expresionRelacional  expresionTraduccion
+                    |TkNOT expresionTraduccion
+                    |expresionTraduccion TkAND expresionTraduccion
+                    |expresionTraduccion TkOR expresionTraduccion
+                    |TkTrue 
+                    |TkFalse 
+                    |TkCADENA TkSUMA  expresionTraduccion
+                    |TkIdentificador 
+                    |TkIdentificador   TkSUMA expresionTraduccion
+                    
+
+
+
+
+
+instruccionConsoleWr ::= TkCONSOLE_R TkPUNTO TkWRITE_R TkPARENTESISAbre expresionTraduccion TkPARENTESISCierra TkPUNTOYCOMA
+
+
+instruccionIF::=  TkIF_R TkPARENTESISAbre expresionTraduccion TkPARENTESISCierra TkLLAVEA  listainstrTraduccion  instruccionLlaveC
+
+
+
+instruccionLlaveC::=  TkLLAVEC
+                    | TkLLAVEC  TkELSE_R TkLLAVEA   listainstrTraduccion   TkLLAVEC
+                    | TkLLAVEC  TkELSE_R TkIF_R TkPARENTESISAbre expresionTraduccion TkPARENTESISCierra   TkLLAVEA   listainstrTraduccion    instruccionLlaveC
+
+
+expresionRelacional ::= TkMAYORQUE
+                    | TkMENORQUE
+                    | TkMAYORIGUAL
+                    | TkMENORIGUAL
+                    | TkIGUALIGUAL
+                    | TkIDISTINTO
+
+
+
+instruccionWhile::= TkWHILE_R TkPARENTESISAbre expresionTraduccion   TkPARENTESISCierra   TkLLAVEA   listainstrTraduccion  TkLLAVEC
+
+
+
+instruccionDowhile::=  TkDO_R TkLLAVEA listainstrTraduccion  TkLLAVEC TkWHILE_R  TkPARENTESISAbre expresionTraduccion  TkPARENTESISCierra TkPUNTOYCOMA
+
+
+
+instruccionFor ::= TkFOR_R TkPARENTESISAbre  tipoDato TkIdentificador TkIGUAL expresionTraduccion TkPUNTOYCOMA TkIdentificador  expresionRelacional expresionTraduccion TkPUNTOYCOMA TkIdentificador TkIncremento TkPARENTESISCierra TkLLAVEA listainstrTraduccion TkLLAVEC
+
+
+
+
+
+declaracionvariable ::= tipoDato TkIdentificador TkPUNTOYCOMA 
+                  | tipoDato TkIdentificador TkIGUAL expresionTraduccion TkPUNTOYCOMA 
+
+
+
+tipoDato::=  TkINT_R 
+            |TkDOUBLE_R
+            |TkCHAR_R
+            |TkBOOL_R
+            |TkSTRING_R
+
+
+
+asignacionvariable ::= TkIdentificador TkIGUAL  expresionTraduccion TkPUNTOYCOMA 
+
+
+
+instrucccionSwitch::= TkSWITCH_R  TkPARENTESISAbre expresionTraduccion TkPARENTESISCierra TkLLAVEA  instruccionListaCasoss  TkLLAVEC
+
+
+instruccionListaCasoss::=  instruccionListaCasoss  instrucListCas 
+                           | instrucListCas 
+
+
+        
+                            
+instrucListCas::=  TkCASE_R  expresionTraduccion   TkDOSPUNTOS listainstrTraduccion
+                         | TkCASE_R  expresionTraduccion   TkDOSPUNTOS listainstrTraduccion TkBRAKE_R TkPUNTOYCOMA
+                         | TkDEFAULT_R TkDOSPUNTOS listainstrTraduccion
+

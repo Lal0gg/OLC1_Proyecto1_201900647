@@ -47,8 +47,6 @@ terminal String TkMAYORQUE, TkMENORQUE, TkMAYORIGUAL, TkMENORIGUAL,TkIGUALIGUAL,
 terminal String TkAND,TkOR, TkNOT,TkIncremento;
 terminal String TkINT_R,TkDOUBLE_R,TkCHAR_R,TkBOOL_R,TkSTRING_R;
 terminal String TkVOID_R,TkMAIN_R;
-terminal String TkIF_R, TkELSE_R, TkCASE_R,TkBRAKE_R,TkDEFAULT_R;
-terminal String TkCONSOLE_R,TkWRITE_R;
 terminal String TkFOR_R, TkDO_R,TkWHILE_R;
 terminal String TkDEFINIR_GLOBALES_R,TkGRAFICA_BARRAS_R,TkGRAFICA_PIE_R, TkNewValor;
 terminal String TkEjeX,TkTituloX,TkTituloY,TkTitulo,TkValores;
